@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wildes Hagen – Digitales Schwarzes Brett</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef3f0;
+        }
+
+        /* Gesamte Anwendung */
+        #app {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Kopf */
+        header {
+            background: white;
+            padding: 18px 25px 12px 25px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        header h1 {
+            margin: 0 0 15px 0;
+            color: #459b72;
+            font-size: 32px;
+        }
+
+        /* Hauptnavigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        nav button {
+            flex: 1;
+            max-width: 300px;
+
+            padding: 18px 10px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #4da47b;
+            color: white;
+
+            font-size: 24px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        nav button:active {
+            transform: scale(0.97);
+        }
+
+        nav button.aktiv {
+            background: #286b4c;
+        }
+
+        /* Appack-Bereich */
+        #inhalt {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: white;
+        }
+
+        /* kleine Statuszeile */
+        footer {
+            height: 35px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 18px;
+
+            background: #ffffff;
+            color: #777;
+
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div id="app">
+
+    <header>
+
+        <h1>Wildes Hagen – Digitales Schwarzes Brett</h1>
+
+        <nav>
+
+            <button
+                id="button-start"
+                class="aktiv"
+                onclick="zeigeStart()">
+                🏠 Start
+            </button>
+
+            <button
+                id="button-news"
+                onclick="zeigeNews()">
+                📰 News
+            </button>
+
+            <button
+                id="button-termine"
+                onclick="zeigeTermine()">
+                📅 Termine
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main id="inhalt">
+
+        <iframe
+            id="anzeige"
+            src="https://appack.de/rest-api/drender/69865b621eb0af890807f328">
+        </iframe>
+
+    </main>
+
+
+    <footer>
+
+        <span>Hagen & Wildwiese</span>
+
+        <span>Digitales Schwarzes Brett</span>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    const urls = {
+
+        start:
+        "https://appack.de/rest-api/drender/69865b621eb0af890807f328",
+
+        news:
+        "https://shorturl.appack.de/sundern_Application_1765195867222",
+
+        termine:
+        "https://shorturl.appack.de/sundern_Application_1663675240711?calendarIds="
+
+    };
+
+
+    function alleButtonsZuruecksetzen() {
+
+        document
+            .querySelectorAll("nav button")
+            .forEach(button => button.classList.remove("aktiv"));
+
+    }
+
+
+    function ladeSeite(url, buttonID) {
+
+        document.getElementById("anzeige").src = url;
+
+        alleButtonsZuruecksetzen();
+
+        document
+            .getElementById(buttonID)
+            .classList.add("aktiv");
+
+    }
+
+
+    function zeigeStart() {
+
+        ladeSeite(
+            urls.start,
+            "button-start"
+        );
+
+    }
+
+
+    function zeigeNews() {
+
+        ladeSeite(
+            urls.news,
+            "button-news"
+        );
+
+    }
+
+
+    function zeigeTermine() {
+
+        ladeSeite(
+            urls.termine,
+            "button-termine"
+        );
+
+    }
+
+
+    /*
+       Automatische Rückkehr zur Startseite.
+
+       Momentan 5 Minuten.
+    */
+
+    let timer;
+
+
+    function timerNeuStarten() {
+
+        clearTimeout(timer);
+
+        timer = setTimeout(function() {
+
+            zeigeStart();
+
+        }, 5 * 60 * 1000);
+
+    }
+
+
+    document.addEventListener(
+        "click",
+        timerNeuStarten
+    );
+
+
+    document.addEventListener(
+        "touchstart",
+        timerNeuStarten
+    );
+
+
+    timerNeuStarten();
+
+</script>
+
+</body>
+</html>
