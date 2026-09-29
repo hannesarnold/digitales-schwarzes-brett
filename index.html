@@ -383,7 +383,7 @@ body {
 
 
 /* ================================
-   EIGENE STARTSEITE v0.9.2
+   EIGENE STARTSEITE v0.9.3
    ================================ */
 
 #startSeite {
@@ -471,13 +471,15 @@ body {
 
 .startInfoBereich {
     margin-top: 70px;
-    width: min(78%, 1500px);
+    width: min(82%, 1550px);
+    margin-left: auto;
+    margin-right: auto;
     display: grid;
     gap: 34px;
 }
 
 .startKarte {
-    background: rgba(255,255,255,.91);
+    background: rgba(255,255,255,.72);
     border-radius: 30px;
     box-shadow: 0 7px 24px rgba(0,0,0,.18);
     padding: 34px 42px;
@@ -521,7 +523,7 @@ body {
     right: 58px;
     bottom: 112px;
     width: min(31vw, 520px);
-    background: rgba(255,255,255,.95);
+    background: rgba(255,255,255,.80);
     border-radius: 28px;
     padding: 18px;
     box-sizing: border-box;
@@ -586,6 +588,57 @@ body {
     }
 }
 
+
+/* ================================
+   GRÖSSERE KIOSK-NAVIGATION
+   ================================ */
+
+nav {
+    min-height: 190px !important;
+    padding: 18px 22px !important;
+}
+
+.navButton {
+    min-height: 150px !important;
+    font-size: 34px !important;
+    gap: 10px !important;
+}
+
+.navButton svg {
+    width: 58px !important;
+    height: 58px !important;
+}
+
+.navButton span {
+    font-size: 34px !important;
+    font-weight: 700 !important;
+}
+
+
+/* ================================
+   APPACK-INHALTE VERGRÖSSERN
+   ================================ */
+
+#anzeige {
+    transform: scale(1.35);
+    transform-origin: top left;
+    width: 74.074% !important;
+    height: 74.074% !important;
+}
+
+
+/* Größere Schaltflächen unter Mehr */
+.mehrButton {
+    min-height: 150px !important;
+    font-size: 34px !important;
+    border-radius: 24px !important;
+    padding: 26px 30px !important;
+}
+
+.mehrIcon {
+    font-size: 46px !important;
+}
+
 </style>
 </head>
 
@@ -604,7 +657,7 @@ body {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.9.2
+         EIGENE STARTSEITE v0.9.3
          ============================ -->
 
     <div id="startSeite">
@@ -1022,7 +1075,7 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.9.2
+   STARTSEITE v0.9.3
    ================================ */
 
 const startBilder = [
