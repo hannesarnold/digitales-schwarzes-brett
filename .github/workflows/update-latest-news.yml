@@ -1,0 +1,46 @@
+name: Neueste Appack-News aktualisieren
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Einmal pro Stunde, leicht versetzt zur vollen Stunde
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-latest-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository laden
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Playwright installieren
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          playwright install chromium
+
+      - name: Neueste News ermitteln
+        run: python scripts/update_latest_news.py
+
+      - name: Änderung speichern
+        run: |
+          if git diff --quiet latest-news.json; then
+            echo "Keine Änderung an latest-news.json."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add latest-news.json
+          git commit -m "Neueste Appack-News aktualisieren"
+          git push
