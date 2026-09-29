@@ -1,6 +1,4 @@
 {
-  "checked_at": "2026-09-29T19:40:25.915486+00:00",
-  "overview_url": "https://shorturl.appack.de/sundern_Application_1765195867222",
-  "status": "browser_loaded_but_no_shared_link",
-  "message": "Die News-Seite wurde mit einem echten Browser inklusive JavaScript geladen, aber es wurde noch kein /news/de/shared/-Link im DOM gefunden. Dann müssen wir im nächsten Schritt gezielt den ersten News-Eintrag anklicken oder die von Appack verwendete Datenquelle im Browser-Netzwerk auswerten."
+  "status": "not_run_yet",
+  "message": "Wird beim ersten Lauf der finalen GitHub Action automatisch ersetzt."
 }
