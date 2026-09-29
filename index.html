@@ -76,554 +76,10 @@ body {
    ================================ */
 
 #anzeige {
-    width: 100%;
-    height: 100%;
-
-    border: none;
-
-    display: block;
-
-    background: white;
-}
-
-
-/* ================================
-   MEHR-SEITE
-   ================================ */
-
-#mehrSeite {
-
-    display: none;
-
-    width: 100%;
-    height: 100%;
-
-    overflow-y: auto;
-
-    padding:
-        40px
-        30px
-        60px
-        30px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #edf7f2 100%
-        );
-}
-
-
-.mehrTitel {
-
-    margin:
-        0
-        0
-        35px
-        0;
-
-    text-align: center;
-
-    color: #489a70;
-
-    font-size: 38px;
-}
-
-
-/* ================================
-   MEHR BUTTONS
-   ================================ */
-
-.mehrGrid {
-
-    max-width: 950px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 25px;
-}
-
-
-.mehrButton {
-
-    min-height: 170px;
-
-    border: none;
-
-    border-radius: 22px;
-
-    background: white;
-
-    box-shadow:
-        0 4px 16px
-        rgba(0,0,0,0.12);
-
-    cursor: pointer;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 13px;
-
-    font-size: 54px;
-
-    font-weight: bold;
-
-    color: #333333;
-}
-
-
-.mehrButton:active {
-
-    transform:
-        scale(0.97);
-
-}
-
-
-.mehrIcon {
-
-    font-size: 52px;
-
-}
-
-
-.mehrHinweis {
-
-    font-size: 14px;
-
-    font-weight: normal;
-
-    color: #888888;
-
-}
-
-
-/* ================================
-   UNTERE NAVIGATION
-   ================================ */
-
-#navigationBereich {
-
-    background: white;
-
-    padding:
-        8px
-        15px
-        max(
-            8px,
-            env(safe-area-inset-bottom)
-        );
-
-    box-shadow:
-        0 -3px 15px
-        rgba(0,0,0,0.12);
-
-    z-index: 100;
-}
-
-
-#navigation {
-
-    max-width: 800px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    border:
-        2px solid
-        #eeeeee;
-
-    border-radius: 35px;
-
-    padding: 5px;
-
-    background: white;
-}
-
-
-.navButton {
-
-    min-height: 75px;
-
-    border: none;
-
-    border-radius: 28px;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 3px;
-
-    color: #222222;
-
-    font-size: 15px;
-}
-
-
-.navIcon {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-}
-
-.navIcon svg {
-    width: 30px;
-    height: 30px;
-    display: block;
-    fill: currentColor;
-}
-
-
-.navButton.aktiv {
-
-    color: #43996f;
-
-    background: #edf7f2;
-
-    font-weight: bold;
-
-}
-
-
-.navButton:active {
-
-    transform:
-        scale(0.95);
-
-}
-
-
-/* ================================
-   HANDY / KLEINERE DISPLAYS
-   ================================ */
-
-@media (max-width:600px) {
-
-    .mehrSeite {
-        padding:
-            25px
-            15px
-            40px
-            15px;
-    }
-
-    .mehrTitel {
-        font-size: 30px;
-        margin-bottom: 22px;
-    }
-
-    .mehrGrid {
-        gap: 14px;
-    }
-
-    .mehrButton {
-
-        min-height: 130px;
-
-        font-size: 34px;
-
-        padding: 10px;
-    }
-
-    .mehrIcon {
-        font-size: 39px;
-    }
-
-    .mehrHinweis {
-        font-size: 12px;
-    }
-
-    .navButton {
-
-        min-height: 63px;
-
-        font-size: 12px;
-    }
-
-    .navIcon,
-    .navIcon svg {
-        width: 26px;
-        height: 26px;
-    }
-
-}
-
-
-/* DORFKARTE */
-#kartenSeite{display:none;width:100%;height:100%;position:relative;background:white;}
-#dorfkarte{width:100%;height:100%;}
-.kartenMarker{width:24px;height:24px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.35);}
-.leaflet-popup-content{font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.35;}
-.leaflet-popup-content strong{font-size:19px;}
-
-
-/* ================================
-   EIGENE STARTSEITE v0.9.3
-   ================================ */
-
-#startSeite {
-    display: none;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    background: #1f3e31;
-}
-
-.startBildEbene {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.startBildHaelfte {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
-}
-
-.startBildHaelfte.oben { top: 0; }
-.startBildHaelfte.unten { bottom: 0; }
-
-.startBild {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 1.35s ease-in-out, opacity 1.35s ease-in-out;
-    will-change: transform, opacity;
-}
-
-.startBild.aktuell { transform: translateX(0); opacity: 1; }
-.startBild.naechstesRechts { transform: translateX(100%); opacity: 1; }
-.startBild.naechstesLinks { transform: translateX(-100%); opacity: 1; }
-
-.startBild.rausLinks { transform: translateX(-100%); opacity: .95; }
-.startBild.rausRechts { transform: translateX(100%); opacity: .95; }
-
-.startAbdunklung {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.22) 0%,
-            rgba(0,0,0,.10) 36%,
-            rgba(0,0,0,.18) 100%
-        );
-}
-
-.startVordergrund {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    padding: 70px 90px 260px 90px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    pointer-events: none;
-}
-
-.startHeadline {
-    width: min(94%, 1850px);
-    margin: 0 auto;
-    background: rgba(255,255,255,.94);
-    border-radius: 32px;
-    padding: 18px 26px;
-    box-shadow: 0 8px 28px rgba(0,0,0,.20);
-}
-
-.startHeadline img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.startInfoBereich {
-    margin-top: 70px;
-    width: min(82%, 1550px);
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    gap: 34px;
-}
-
-.startKarte {
-    background: rgba(255,255,255,.72);
-    border-radius: 30px;
-    box-shadow: 0 7px 24px rgba(0,0,0,.18);
-    padding: 34px 42px;
-    color: #173a2a;
-    backdrop-filter: blur(4px);
-}
-
-.startDatum {
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.startUhrzeit {
-    font-size: 100px;
-    line-height: 1.05;
-    font-weight: 800;
-    margin-top: 10px;
-}
-
-.startInfoTitel {
-    font-size: 17px;
-    font-weight: 800;
-    color: #3f7f5b;
-    margin-bottom: 12px;
-}
-
-.startInfoWert {
-    font-size: 46px;
-    font-weight: 700;
-}
-
-.startInfoHinweis {
-    font-size: 28px;
-    margin-top: 3px;
-    color: #555;
-}
-
-.startQr {
-    position: absolute;
-    z-index: 4;
-    right: 58px;
-    bottom: 112px;
-    width: min(31vw, 520px);
-    background: rgba(255,255,255,.80);
-    border-radius: 28px;
-    padding: 18px;
-    box-sizing: border-box;
-    box-shadow: 0 8px 26px rgba(0,0,0,.22);
-    text-align: center;
-}
-
-.startQrTitel {
-    font-size: 30px;
-    line-height: 1.25;
-    font-weight: 800;
-    color: #256744;
-    margin: 2px 0 7px 0;
-}
-
-.startQr img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-}
-
-@media (max-width: 900px) {
-    .startVordergrund {
-        padding: 10px 10px 95px 10px;
-    }
-
-    .startHeadline {
-        width: 98%;
-        padding: 5px 8px;
-        border-radius: 12px;
-    }
-
-    .startInfoBereich {
-        width: 67%;
-        margin-top: 9px;
-        gap: 7px;
-    }
-
-    .startKarte {
-        padding: 9px 11px;
-        border-radius: 12px;
-    }
-
-    .startDatum { font-size: 17px; }
-    .startUhrzeit { font-size: 31px; }
-    .startInfoTitel { font-size: 14px; }
-    .startInfoWert { font-size: 17px; }
-    .startInfoHinweis { font-size: 13px; }
-
-    .startQr {
-        right: 10px;
-        bottom: 95px;
-        width: 30vw;
-        min-width: 185px;
-        padding: 7px;
-        border-radius: 12px;
-    }
-
-    .startQrTitel {
-        font-size: 13px;
-    }
-}
-
-
-/* ================================
-   GRÖSSERE KIOSK-NAVIGATION
-   ================================ */
-
-nav {
-    min-height: 190px !important;
-    padding: 18px 22px !important;
-}
-
-.navButton {
-    min-height: 150px !important;
-    font-size: 34px !important;
-    gap: 10px !important;
-}
-
-.navButton svg {
-    width: 58px !important;
-    height: 58px !important;
-}
-
-.navButton span {
-    font-size: 34px !important;
-    font-weight: 700 !important;
-}
-
-
-/* ================================
-   APPACK-INHALTE VERGRÖSSERN
-   ================================ */
-
-#anzeige {
-    transform: scale(1.35);
+    transform: scale(2.70);
     transform-origin: top left;
-    width: 74.074% !important;
-    height: 74.074% !important;
+    width: 37.037% !important;
+    height: 37.037% !important;
 }
 
 
@@ -637,6 +93,125 @@ nav {
 
 .mehrIcon {
     font-size: 46px !important;
+}
+
+
+/* ================================
+   KIOSK-NAVIGATION v0.9.4
+   ================================ */
+
+nav {
+    min-height: 320px !important;
+    padding: 28px 30px !important;
+}
+
+.navButton {
+    min-height: 250px !important;
+    font-size: 60px !important;
+    gap: 18px !important;
+    border-radius: 34px !important;
+}
+
+.navButton svg {
+    width: 96px !important;
+    height: 96px !important;
+}
+
+.navButton span {
+    font-size: 60px !important;
+    font-weight: 800 !important;
+}
+
+
+/* ================================
+   MEHR-SEITE v0.9.4
+   ================================ */
+
+#mehrSeite {
+    padding: 70px 80px 360px 80px !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+}
+
+#mehrSeite h2,
+#mehrSeite h1 {
+    font-size: 74px !important;
+    margin-bottom: 50px !important;
+}
+
+.mehrGrid {
+    gap: 34px !important;
+}
+
+.mehrButton {
+    min-height: 280px !important;
+    font-size: 58px !important;
+    border-radius: 34px !important;
+    padding: 38px 42px !important;
+}
+
+.mehrButton span {
+    font-size: 58px !important;
+}
+
+.mehrIcon {
+    font-size: 82px !important;
+    margin-bottom: 14px !important;
+}
+
+
+/* ================================
+   UNTERSEITEN v0.9.4
+   ================================ */
+
+#dorfladenSeite {
+    padding: 70px 80px 360px 80px !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+}
+
+#dorfladenSeite h1,
+#dorfladenSeite h2 {
+    font-size: 72px !important;
+    line-height: 1.15 !important;
+}
+
+#dorfladenSeite h3 {
+    font-size: 52px !important;
+    line-height: 1.2 !important;
+}
+
+#dorfladenSeite p,
+#dorfladenSeite div,
+#dorfladenSeite span {
+    font-size: 40px !important;
+    line-height: 1.45 !important;
+}
+
+#dorfladenSeite .mehrButton {
+    min-height: 260px !important;
+    font-size: 54px !important;
+}
+
+#dorfladenIframe {
+    min-height: 2200px !important;
+}
+
+/* Karte größer bedienbar */
+#kartenSeite .leaflet-control-zoom a {
+    width: 84px !important;
+    height: 84px !important;
+    line-height: 84px !important;
+    font-size: 52px !important;
+}
+
+.leaflet-popup-content {
+    font-size: 34px !important;
+    line-height: 1.35 !important;
+}
+
+.leaflet-popup-content strong {
+    font-size: 40px !important;
 }
 
 </style>
@@ -657,7 +232,7 @@ nav {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.9.3
+         EIGENE STARTSEITE v0.9.4
          ============================ -->
 
     <div id="startSeite">
@@ -1075,7 +650,7 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.9.3
+   STARTSEITE v0.9.4
    ================================ */
 
 const startBilder = [
