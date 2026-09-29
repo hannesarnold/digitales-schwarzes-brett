@@ -1,8 +1,6 @@
 {
-  "checked_at": "2026-09-29T18:44:57.711948+00:00",
+  "checked_at": "2026-09-29T19:40:25.915486+00:00",
   "overview_url": "https://shorturl.appack.de/sundern_Application_1765195867222",
-  "overview_final_url": "https://application.appack.de/news/de/?component=sundern_Application_1765195867222&jwt=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6InN1bmRlcm4iLCJ1c2VybmFtZSI6InN1bmRlcm4iLCJpc3MiOiJhcHBhY2siLCJleHAiOjE4MjE4MDAyNDYsImlhdCI6MTc5MDI2NDI0Niwic2NvcGUiOlsiZW1iZWRkZWQiXX0.hmpsvGxX2BItnhjTmEeKIMgwPB5MHVIUc3TLykbLdjZ_1OCjLaki_wMG_gEfx2Qb0quekGrqwoDb4vkjwl99EEuLT5ZDWZv4DrbkZ6c-u_LwU76jOD8ZNN6mRNIl6kR1T9kne3180UjhCgzKp-Edx8ThG4SVyC28SfzU8z36obsV9Dn003MtUlHBQbc_-eLsualuX61PBdTwGOXg2buhMRQQQnkIZVUSXdQpamtkCyz_T5oYu_l4cFmr9dpSUdHyMc2ySUYBWcZirb1wSrRD_SwR46NkveAjQoEWQm-XFEpYrtVXIkCYTyzovjxKHEddFhWPE4yVZBSCs7CQwD2Kiw",
-  "status": "no_shared_link_found",
-  "shared_links_found": 0,
-  "message": "Die Appack-News-Seite wurde geladen, aber im ausgelieferten HTML wurde kein /news/de/shared/-Link gefunden. Wahrscheinlich werden die Beiträge erst per JavaScript nachgeladen."
+  "status": "browser_loaded_but_no_shared_link",
+  "message": "Die News-Seite wurde mit einem echten Browser inklusive JavaScript geladen, aber es wurde noch kein /news/de/shared/-Link im DOM gefunden. Dann müssen wir im nächsten Schritt gezielt den ersten News-Eintrag anklicken oder die von Appack verwendete Datenquelle im Browser-Netzwerk auswerten."
 }

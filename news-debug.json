@@ -1,0 +1,74 @@
+{
+  "checked_at": "2026-09-29T19:40:25.915486+00:00",
+  "overview_url": "https://shorturl.appack.de/sundern_Application_1765195867222",
+  "final_url": "https://application.appack.de/news/de/newsfeed?component=sundern_Application_1765195867222&jwt=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6InN1bmRlcm4iLCJ1c2VybmFtZSI6InN1bmRlcm4iLCJpc3MiOiJhcHBhY2siLCJleHAiOjE4MjE4MDAyNDYsImlhdCI6MTc5MDI2NDI0Niwic2NvcGUiOlsiZW1iZWRkZWQiXX0.hmpsvGxX2BItnhjTmEeKIMgwPB5MHVIUc3TLykbLdjZ_1OCjLaki_wMG_gEfx2Qb0quekGrqwoDb4vkjwl99EEuLT5ZDWZv4DrbkZ6c-u_LwU76jOD8ZNN6mRNIl6kR1T9kne3180UjhCgzKp-Edx8ThG4SVyC28SfzU8z36obsV9Dn003MtUlHBQbc_-eLsualuX61PBdTwGOXg2buhMRQQQnkIZVUSXdQpamtkCyz_T5oYu_l4cFmr9dpSUdHyMc2ySUYBWcZirb1wSrRD_SwR46NkveAjQoEWQm-XFEpYrtVXIkCYTyzovjxKHEddFhWPE4yVZBSCs7CQwD2Kiw",
+  "page_title": "News",
+  "shared_links_found": [],
+  "interesting_links": [],
+  "all_links_sample": [],
+  "element_sample": [
+    {
+      "text": "",
+      "href": "/news/de/",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    },
+    {
+      "text": "",
+      "href": "favicon.ico",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    },
+    {
+      "text": "",
+      "href": "assets/preloading.css",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    },
+    {
+      "text": "",
+      "href": "styles-CD65KUXN.css",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    },
+    {
+      "text": "",
+      "href": "https://cdn.appack.de/sundern/workspace/app-color.css",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    },
+    {
+      "text": "",
+      "href": "https://cdn.appack.de/sundern/workspace/styles.css",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    },
+    {
+      "text": "Powered by Appack",
+      "href": "",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": "window.open('https://www.appack.app/');"
+    },
+    {
+      "text": "",
+      "href": "chunk-NJVSZESJ.js",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    },
+    {
+      "text": "",
+      "href": "chunk-GHGXF6JU.js",
+      "dataHref": "",
+      "dataUrl": "",
+      "onclick": ""
+    }
+  ]
+}
