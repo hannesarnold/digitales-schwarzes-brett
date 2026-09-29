@@ -1,110 +1,592 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Wildes Hagen – Digitales Schwarzes Brett</title>
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<title>Wildes Hagen</title>
 
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #eef3f0;
-        }
 
-        /* Gesamte Anwendung */
-        #app {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
 
-        /* Kopf */
-        header {
-            background: white;
-            padding: 18px 25px 12px 25px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-            z-index: 10;
-        }
+<style>
 
-        header h1 {
-            margin: 0 0 15px 0;
-            color: #459b72;
-            font-size: 32px;
-        }
+/* ================================
+   GRUNDEINSTELLUNGEN
+   ================================ */
 
-        /* Hauptnavigation */
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        nav button {
-            flex: 1;
-            max-width: 300px;
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 
-            padding: 18px 10px;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-            border: none;
-            border-radius: 12px;
+    background: #ffffff;
+}
 
-            background: #4da47b;
-            color: white;
 
-            font-size: 24px;
-            font-weight: bold;
+/* ================================
+   GESAMTE APP
+   ================================ */
 
-            cursor: pointer;
-        }
+#app {
+    width: 100%;
+    height: 100vh;
 
-        nav button:active {
-            transform: scale(0.97);
-        }
+    display: flex;
+    flex-direction: column;
+}
 
-        nav button.aktiv {
-            background: #286b4c;
-        }
 
-        /* Appack-Bereich */
-        #inhalt {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
+/* ================================
+   INHALTSBEREICH
+   ================================ */
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            background: white;
-        }
+#content {
+    flex: 1;
 
-        /* kleine Statuszeile */
-        footer {
-            height: 35px;
+    position: relative;
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    overflow: hidden;
 
-            padding: 0 18px;
+    background: white;
+}
 
-            background: #ffffff;
-            color: #777;
 
-            font-size: 13px;
-        }
-    </style>
+/* ================================
+   APPACK / WEBSEITEN
+   ================================ */
+
+#anzeige {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    display: block;
+
+    background: white;
+}
+
+
+/* ================================
+   MEHR-SEITE
+   ================================ */
+
+#mehrSeite {
+
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    overflow-y: auto;
+
+    padding:
+        40px
+        30px
+        60px
+        30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #edf7f2 100%
+        );
+}
+
+
+.mehrTitel {
+
+    margin:
+        0
+        0
+        35px
+        0;
+
+    text-align: center;
+
+    color: #489a70;
+
+    font-size: 38px;
+}
+
+
+/* ================================
+   MEHR BUTTONS
+   ================================ */
+
+.mehrGrid {
+
+    max-width: 950px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 25px;
+}
+
+
+.mehrButton {
+
+    min-height: 170px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    background: white;
+
+    box-shadow:
+        0 4px 16px
+        rgba(0,0,0,0.12);
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 13px;
+
+    font-size: 54px;
+
+    font-weight: bold;
+
+    color: #333333;
+}
+
+
+.mehrButton:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+.mehrIcon {
+
+    font-size: 52px;
+
+}
+
+
+.mehrHinweis {
+
+    font-size: 14px;
+
+    font-weight: normal;
+
+    color: #888888;
+
+}
+
+
+/* ================================
+   UNTERE NAVIGATION
+   ================================ */
+
+#navigationBereich {
+
+    background: white;
+
+    padding:
+        8px
+        15px
+        max(
+            8px,
+            env(safe-area-inset-bottom)
+        );
+
+    box-shadow:
+        0 -3px 15px
+        rgba(0,0,0,0.12);
+
+    z-index: 100;
+}
+
+
+#navigation {
+
+    max-width: 800px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    border:
+        2px solid
+        #eeeeee;
+
+    border-radius: 35px;
+
+    padding: 5px;
+
+    background: white;
+}
+
+
+.navButton {
+
+    min-height: 75px;
+
+    border: none;
+
+    border-radius: 28px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 3px;
+
+    color: #222222;
+
+    font-size: 15px;
+}
+
+
+.navIcon {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.navIcon svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+    fill: currentColor;
+}
+
+
+.navButton.aktiv {
+
+    color: #43996f;
+
+    background: #edf7f2;
+
+    font-weight: bold;
+
+}
+
+
+.navButton:active {
+
+    transform:
+        scale(0.95);
+
+}
+
+
+/* ================================
+   HANDY / KLEINERE DISPLAYS
+   ================================ */
+
+@media (max-width:600px) {
+
+    .mehrSeite {
+        padding:
+            25px
+            15px
+            40px
+            15px;
+    }
+
+    .mehrTitel {
+        font-size: 30px;
+        margin-bottom: 22px;
+    }
+
+    .mehrGrid {
+        gap: 14px;
+    }
+
+    .mehrButton {
+
+        min-height: 130px;
+
+        font-size: 34px;
+
+        padding: 10px;
+    }
+
+    .mehrIcon {
+        font-size: 39px;
+    }
+
+    .mehrHinweis {
+        font-size: 12px;
+    }
+
+    .navButton {
+
+        min-height: 63px;
+
+        font-size: 12px;
+    }
+
+    .navIcon,
+    .navIcon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+}
+
+
+/* DORFKARTE */
+#kartenSeite{display:none;width:100%;height:100%;position:relative;background:white;}
+#dorfkarte{width:100%;height:100%;}
+.kartenMarker{width:24px;height:24px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.35);}
+.leaflet-popup-content{font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.35;}
+.leaflet-popup-content strong{font-size:19px;}
+
+
+/* ================================
+   EIGENE STARTSEITE v0.9.2
+   ================================ */
+
+#startSeite {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #1f3e31;
+}
+
+.startBildEbene {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.startBildHaelfte {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+.startBildHaelfte.oben { top: 0; }
+.startBildHaelfte.unten { bottom: 0; }
+
+.startBild {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.35s ease-in-out, opacity 1.35s ease-in-out;
+    will-change: transform, opacity;
+}
+
+.startBild.aktuell { transform: translateX(0); opacity: 1; }
+.startBild.naechstesRechts { transform: translateX(100%); opacity: 1; }
+.startBild.naechstesLinks { transform: translateX(-100%); opacity: 1; }
+
+.startBild.rausLinks { transform: translateX(-100%); opacity: .95; }
+.startBild.rausRechts { transform: translateX(100%); opacity: .95; }
+
+.startAbdunklung {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.22) 0%,
+            rgba(0,0,0,.10) 36%,
+            rgba(0,0,0,.18) 100%
+        );
+}
+
+.startVordergrund {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 70px 90px 260px 90px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+}
+
+.startHeadline {
+    width: min(94%, 1850px);
+    margin: 0 auto;
+    background: rgba(255,255,255,.94);
+    border-radius: 32px;
+    padding: 18px 26px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.20);
+}
+
+.startHeadline img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.startInfoBereich {
+    margin-top: 70px;
+    width: min(78%, 1500px);
+    display: grid;
+    gap: 34px;
+}
+
+.startKarte {
+    background: rgba(255,255,255,.91);
+    border-radius: 30px;
+    box-shadow: 0 7px 24px rgba(0,0,0,.18);
+    padding: 34px 42px;
+    color: #173a2a;
+    backdrop-filter: blur(4px);
+}
+
+.startDatum {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.startUhrzeit {
+    font-size: 100px;
+    line-height: 1.05;
+    font-weight: 800;
+    margin-top: 10px;
+}
+
+.startInfoTitel {
+    font-size: 17px;
+    font-weight: 800;
+    color: #3f7f5b;
+    margin-bottom: 12px;
+}
+
+.startInfoWert {
+    font-size: 46px;
+    font-weight: 700;
+}
+
+.startInfoHinweis {
+    font-size: 28px;
+    margin-top: 3px;
+    color: #555;
+}
+
+.startQr {
+    position: absolute;
+    z-index: 4;
+    right: 58px;
+    bottom: 112px;
+    width: min(31vw, 520px);
+    background: rgba(255,255,255,.95);
+    border-radius: 28px;
+    padding: 18px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 26px rgba(0,0,0,.22);
+    text-align: center;
+}
+
+.startQrTitel {
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #256744;
+    margin: 2px 0 7px 0;
+}
+
+.startQr img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+    .startVordergrund {
+        padding: 10px 10px 95px 10px;
+    }
+
+    .startHeadline {
+        width: 98%;
+        padding: 5px 8px;
+        border-radius: 12px;
+    }
+
+    .startInfoBereich {
+        width: 67%;
+        margin-top: 9px;
+        gap: 7px;
+    }
+
+    .startKarte {
+        padding: 9px 11px;
+        border-radius: 12px;
+    }
+
+    .startDatum { font-size: 17px; }
+    .startUhrzeit { font-size: 31px; }
+    .startInfoTitel { font-size: 14px; }
+    .startInfoWert { font-size: 17px; }
+    .startInfoHinweis { font-size: 13px; }
+
+    .startQr {
+        right: 10px;
+        bottom: 95px;
+        width: 30vw;
+        min-width: 185px;
+        padding: 7px;
+        border-radius: 12px;
+    }
+
+    .startQrTitel {
+        font-size: 13px;
+    }
+}
+
+</style>
 </head>
 
 
@@ -112,160 +594,1631 @@
 
 <div id="app">
 
-    <header>
 
-        <h1>Wildes Hagen – Digitales Schwarzes Brett</h1>
+<!-- ================================
+     INHALT
+     ================================ -->
 
-        <nav>
+<main id="content">
+
+
+    
+    <!-- ============================
+         EIGENE STARTSEITE v0.9.2
+         ============================ -->
+
+    <div id="startSeite">
+
+        <div class="startBildEbene">
+            <div class="startBildHaelfte oben">
+                <div id="startObenAktuell" class="startBild aktuell"
+                     style="background-image:url('images/start_1.png');"></div>
+                <div id="startObenNeu" class="startBild naechstesRechts"
+                     style="background-image:url('images/start_2.png');"></div>
+            </div>
+
+            <div class="startBildHaelfte unten">
+                <div id="startUntenAktuell" class="startBild aktuell"
+                     style="background-image:url('images/start_3.png');"></div>
+                <div id="startUntenNeu" class="startBild naechstesLinks"
+                     style="background-image:url('images/start_4.png');"></div>
+            </div>
+        </div>
+
+        <div class="startAbdunklung"></div>
+
+        <div class="startVordergrund">
+            <div class="startHeadline">
+                <img
+                    src="images/headline.png"
+                    alt="Wildes Hagen – Hagen und Wildewiese"
+                >
+            </div>
+
+            <div class="startInfoBereich">
+                <div class="startKarte">
+                    <div id="startDatum" class="startDatum"></div>
+                    <div id="startUhrzeit" class="startUhrzeit"></div>
+                </div>
+
+                <div class="startKarte">
+                    <div class="startInfoTitel">Wetter</div>
+                    <div id="startWetter" class="startInfoWert">– °C</div>
+                    <div class="startInfoHinweis">
+                        Wetterdienst wird als nächster Schritt eingebunden.
+                    </div>
+                </div>
+
+                <div class="startKarte" id="startNewsKarte">
+                    <div class="startInfoTitel">Neueste Meldung</div>
+
+                    <img
+                        id="startNewsBild"
+                        alt=""
+                        style="
+                            display:none;
+                            width:100%;
+                            max-height:520px;
+                            object-fit:cover;
+                            border-radius:22px;
+                            margin:10px 0 24px 0;
+                        "
+                    >
+
+                    <div id="startNews" class="startInfoWert">
+                        Neueste Meldung wird geladen …
+                    </div>
+
+                    <div
+                        id="startNewsDatum"
+                        class="startInfoHinweis">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="startQr">
+            <div class="startQrTitel">
+                Wildes Hagen App herunterladen
+            </div>
+            <img
+                src="images/qr_store.png"
+                alt="QR-Code für die Wildes Hagen App – App Store und Google Play"
+            >
+        </div>
+
+    </div>
+
+
+    <iframe
+        id="anzeige"
+        src="about:blank">
+    </iframe>
+
+
+
+    <!-- ============================
+         UNSERE EIGENE MEHR-SEITE
+         ============================ -->
+
+    <div id="mehrSeite">
+
+
+        <h1 class="mehrTitel">
+
+            Mehr
+
+        </h1>
+
+
+        <div class="mehrGrid">
+
+<!-- DORFLADEN -->
 
             <button
-                id="button-start"
-                class="aktiv"
-                onclick="zeigeStart()">
-                🏠 Start
+                class="mehrButton"
+                onclick="zeigeDorfladen()">
+
+                <span class="mehrIcon">
+                    🛒
+                </span>
+
+                <span>
+                    Dorfladen
+                </span>
+
             </button>
+
+
+
+            <!-- VEREINE -->
 
             <button
-                id="button-news"
-                onclick="zeigeNews()">
-                📰 News
+                class="mehrButton"
+                onclick="zeigeVereine()">
+
+                <span class="mehrIcon">
+                    👥
+                </span>
+
+                <span>
+                    Vereine
+                </span>
+
             </button>
+
+
+
+            <!-- DORFCHRONIK -->
 
             <button
-                id="button-termine"
-                onclick="zeigeTermine()">
-                📅 Termine
+                class="mehrButton"
+                onclick="zeigeChronik()">
+
+                <span class="mehrIcon">
+                    📖
+                </span>
+
+                <span>
+                    Dorfchronik
+                </span>
+
+                <span class="mehrHinweis">
+                    Wildes Hagen
+                </span>
+
             </button>
 
-        </nav>
-
-    </header>
 
 
-    <main id="inhalt">
+            <!-- KARTE -->
 
-        <iframe
-            id="anzeige"
-            src="https://appack.de/rest-api/drender/69865b621eb0af890807f328">
-        </iframe>
+            <button
+                class="mehrButton"
+                onclick="zeigeKarte()">
 
-    </main>
+                <span class="mehrIcon">
+                    🗺️
+                </span>
+
+                <span>
+                    Karte
+                </span>
+
+            </button>
 
 
-    <footer>
 
-        <span>Hagen & Wildwiese</span>
+            <!-- STAMMTISCHE -->
 
-        <span>Digitales Schwarzes Brett</span>
+            <button
+                class="mehrButton"
+                onclick="zeigeStammtische()">
 
-    </footer>
+                <span class="mehrIcon">
+                    🍻
+                </span>
+
+                <span>
+                    Stammtische
+                </span>
+
+            </button>
+
+</div>
+
+    </div>
+
+    <div id="kartenSeite"><div id="dorfkarte"></div></div>
+
+    <!-- ============================
+         DORFLADEN
+         ============================ -->
+
+    <div id="dorfladenSeite" style="
+        display:none;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background:white;
+        padding:24px;
+        box-sizing:border-box;
+    ">
+        <div id="dorfladenMenue">
+            <h2 style="margin-top:0;">Dorfladen Hagen</h2>
+
+            <p style="font-size:18px; line-height:1.45;">
+                Bitte gewünschten Bereich auswählen.
+            </p>
+
+            <div style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:16px;
+                margin-top:22px;
+            ">
+<button class="mehrButton" onclick="zeigeDorfladenInhalt('sortiment')">
+                    <span class="mehrIcon">🧺</span>
+                    <span>Sortiment</span>
+                </button>
+
+                <button class="mehrButton" onclick="zeigeDorfladenInhalt('steckbrief')">
+                    <span class="mehrIcon">ℹ️</span>
+                    <span>Steckbrief</span>
+                </button>
+
+                <button class="mehrButton" onclick="zeigeDorfladenInhalt('geschenkkoerbe')">
+                    <span class="mehrIcon">🎁</span>
+                    <span>Geschenkkörbe</span>
+                </button>
+
+                <button class="mehrButton" onclick="zeigeMehr()">
+                    <span class="mehrIcon">←</span>
+                    <span>Zurück zu Mehr</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="dorfladenInhalt" style="display:none;">
+<div id="dorfladenText" style="
+                font-size:18px;
+                line-height:1.55;
+                padding-bottom:30px;
+            "></div>
+
+            <iframe
+                id="dorfladenIframe"
+                title="Dorfladen Sortiment"
+                style="
+                    display:none;
+                    width:100%;
+                    height:calc(100vh - 210px);
+                    min-height:650px;
+                    border:0;
+                    background:white;
+                ">
+            </iframe>
+        </div>
+    </div>
+
+</main>
+
+
+
+<!-- ================================
+     NAVIGATION
+     ================================ -->
+
+<div id="navigationBereich">
+
+
+<nav id="navigation">
+
+
+    <!-- START -->
+
+    <button
+        id="nav-start"
+        class="navButton aktiv"
+        onclick="zeigeStart()">
+
+        <span class="navIcon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3L4 10h2v9h5v-5h2v5h5v-9h2L12 3z"/>
+                </svg>
+        </span>
+
+        <span>
+            Start
+        </span>
+
+    </button>
+
+
+
+    <!-- NEWS -->
+
+    <button
+        id="nav-news"
+        class="navButton"
+        onclick="zeigeNews()">
+
+        <span class="navIcon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 4h16v12H8l-4 4V4zm4 4h8v2H8V8zm0 4h6v2H8v-2z"/>
+                </svg>
+        </span>
+
+        <span>
+            News
+        </span>
+
+    </button>
+
+
+
+    <!-- TERMINE -->
+
+    <button
+        id="nav-termine"
+        class="navButton"
+        onclick="zeigeTermine()">
+
+        <span class="navIcon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 2h2v2h6V2h2v2h3v17H4V4h3V2zm11 7H6v10h12V9z"/>
+                </svg>
+        </span>
+
+        <span>
+            Termine
+        </span>
+
+    </button>
+
+
+
+    <!-- MEHR -->
+
+    <button
+        id="nav-mehr"
+        class="navButton"
+        onclick="zeigeMehr()">
+
+        <span class="navIcon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="5" cy="12" r="2"/>
+                    <circle cx="12" cy="12" r="2"/>
+                    <circle cx="19" cy="12" r="2"/>
+                </svg>
+        </span>
+
+        <span>
+            Mehr
+        </span>
+
+    </button>
+
+
+</nav>
+
+</div>
 
 </div>
 
 
 <script>
 
-    const urls = {
 
-        start:
-        "https://appack.de/rest-api/drender/69865b621eb0af890807f328",
+/* ================================
+   ADRESSEN
+   ================================ */
 
-        news:
-        "https://shorturl.appack.de/sundern_Application_1765195867222",
-
-        termine:
-        "https://shorturl.appack.de/sundern_Application_1663675240711?calendarIds="
-
-    };
+const urls = {
 
 
-    function alleButtonsZuruecksetzen() {
+start:
+    "about:blank",
 
+
+    news:
+    "https://shorturl.appack.de/sundern_Application_1765195867222",
+
+
+    termine:
+    "https://shorturl.appack.de/sundern_Application_1663675240711?calendarIds=",
+vereine:
+    "https://appack.de/rest-api/drender/6374f7dce4b08baba4be8855",
+
+
+    chronik:
+    "https://freiheit-hagen.de/unsere-doerfer/dorfchronik/",
+
+
+    stammtische:
+    "https://cdn.appack.de/sundern/html/Stammtischhistorie.html"
+};
+
+
+
+/* ================================
+   STARTSEITE v0.9.2
+   ================================ */
+
+const startBilder = [
+    "images/start_1.png",
+    "images/start_3.png",
+    "images/start_2.png",
+    "images/start_4.png"
+];
+
+let startBildIndex = 0;
+let startBildTimer = null;
+
+function aktualisiereStartZeit() {
+
+    const jetzt = new Date();
+
+    document
+        .getElementById("startDatum")
+        .textContent =
+        jetzt.toLocaleDateString(
+            "de-DE",
+            {
+                weekday: "long",
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+    document
+        .getElementById("startUhrzeit")
+        .textContent =
+        jetzt.toLocaleTimeString(
+            "de-DE",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        ) + " Uhr";
+}
+
+function wechsleStartBilder() {
+
+    const obenAlt =
+        document.getElementById("startObenAktuell");
+
+    const obenNeu =
+        document.getElementById("startObenNeu");
+
+    const untenAlt =
+        document.getElementById("startUntenAktuell");
+
+    const untenNeu =
+        document.getElementById("startUntenNeu");
+
+    const neuerObenIndex =
+        (startBildIndex + 2) % startBilder.length;
+
+    const neuerUntenIndex =
+        (startBildIndex + 3) % startBilder.length;
+
+    obenNeu.style.backgroundImage =
+        `url("${startBilder[neuerObenIndex]}")`;
+
+    untenNeu.style.backgroundImage =
+        `url("${startBilder[neuerUntenIndex]}")`;
+
+    obenNeu.className =
+        "startBild naechstesRechts";
+
+    untenNeu.className =
+        "startBild naechstesLinks";
+
+    void obenNeu.offsetWidth;
+
+    obenAlt.className =
+        "startBild rausLinks";
+
+    untenAlt.className =
+        "startBild rausRechts";
+
+    obenNeu.className =
+        "startBild aktuell";
+
+    untenNeu.className =
+        "startBild aktuell";
+
+    setTimeout(function() {
+
+        obenAlt.style.backgroundImage =
+            obenNeu.style.backgroundImage;
+
+        untenAlt.style.backgroundImage =
+            untenNeu.style.backgroundImage;
+
+        obenAlt.className =
+            "startBild aktuell";
+
+        untenAlt.className =
+            "startBild aktuell";
+
+        obenNeu.className =
+            "startBild naechstesRechts";
+
+        untenNeu.className =
+            "startBild naechstesLinks";
+
+        startBildIndex =
+            (startBildIndex + 2) %
+            startBilder.length;
+
+    }, 1450);
+}
+
+
+async function ladeNeuesteNews() {
+
+    const titelElement =
+        document.getElementById("startNews");
+
+    const datumElement =
+        document.getElementById("startNewsDatum");
+
+    const bildElement =
+        document.getElementById("startNewsBild");
+
+    try {
+
+        const antwort =
+            await fetch(
+                "latest-news.json?ts=" +
+                Date.now(),
+                {
+                    cache: "no-store"
+                }
+            );
+
+        if (!antwort.ok) {
+            throw new Error(
+                "latest-news.json konnte nicht geladen werden."
+            );
+        }
+
+        const daten =
+            await antwort.json();
+
+        if (
+            daten.status !== "ok" ||
+            !daten.title
+        ) {
+            throw new Error(
+                "Keine aktuelle Meldung vorhanden."
+            );
+        }
+
+        titelElement.textContent =
+            daten.title;
+
+        if (daten.publishedDate) {
+
+            const datum =
+                new Date(
+                    daten.publishedDate
+                );
+
+            datumElement.textContent =
+                "Veröffentlicht am " +
+                datum.toLocaleDateString(
+                    "de-DE",
+                    {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric"
+                    }
+                );
+
+        } else {
+
+            datumElement.textContent = "";
+
+        }
+
+        if (daten.image) {
+
+            bildElement.src =
+                daten.image;
+
+            bildElement.alt =
+                daten.title;
+
+            bildElement.style.display =
+                "block";
+
+        } else {
+
+            bildElement.style.display =
+                "none";
+
+        }
+
+    } catch (fehler) {
+
+        titelElement.textContent =
+            "Zurzeit keine aktuelle Meldung verfügbar.";
+
+        datumElement.textContent = "";
+
+        bildElement.style.display =
+            "none";
+
+        console.error(
+            "News konnten nicht geladen werden:",
+            fehler
+        );
+    }
+}
+
+function starteStartseite() {
+
+    aktualisiereStartZeit();
+    ladeNeuesteNews();
+
+    if (!startBildTimer) {
+
+        startBildTimer =
+            setInterval(
+                wechsleStartBilder,
+                20000
+            );
+    }
+}
+
+setInterval(
+    aktualisiereStartZeit,
+    1000
+);
+
+setInterval(
+    ladeNeuesteNews,
+    60 * 60 * 1000
+);
+
+
+/* ================================
+   NAVIGATION ZURÜCKSETZEN
+   ================================ */
+
+function navigationZuruecksetzen() {
+
+    document
+        .querySelectorAll(".navButton")
+        .forEach(
+            function(button) {
+
+                button
+                    .classList
+                    .remove("aktiv");
+
+            }
+        );
+
+}
+
+
+/* ================================
+   NAVIGATION AKTIVIEREN
+   ================================ */
+
+function aktiviereNavigation(id) {
+
+    navigationZuruecksetzen();
+
+    document
+        .getElementById(id)
+        .classList
+        .add("aktiv");
+
+}
+
+
+/* ================================
+   WEBSEITE ANZEIGEN
+   ================================ */
+
+function zeigeIframe(url) {
+
+
+    document
+        .getElementById("startSeite")
+        .style.display =
+        "none";
+
+    document
+        .getElementById("mehrSeite")
+        .style.display =
+        "none";
+
+    document
+        .getElementById("kartenSeite")
+        .style.display =
+        "none";
+
+    document
+        .getElementById("dorfladenSeite")
+        .style.display =
+        "none";
+
+
+    const iframe =
         document
-            .querySelectorAll("nav button")
-            .forEach(button => button.classList.remove("aktiv"));
+        .getElementById("anzeige");
 
+
+    iframe.style.display =
+        "block";
+
+
+    iframe.src =
+        url;
+
+}
+
+
+/* ================================
+   START
+   ================================ */
+
+function zeigeStart() {
+
+    document
+        .getElementById("anzeige")
+        .style.display =
+        "none";
+
+    document
+        .getElementById("mehrSeite")
+        .style.display =
+        "none";
+
+    document
+        .getElementById("kartenSeite")
+        .style.display =
+        "none";
+
+    document
+        .getElementById("dorfladenSeite")
+        .style.display =
+        "none";
+
+    document
+        .getElementById("startSeite")
+        .style.display =
+        "block";
+
+    aktiviereNavigation(
+        "nav-start"
+    );
+
+    starteStartseite();
+
+}
+
+
+/* ================================
+   NEWS
+   ================================ */
+
+function zeigeNews() {
+
+    zeigeIframe(
+        urls.news
+    );
+
+    aktiviereNavigation(
+        "nav-news"
+    );
+
+}
+
+
+/* ================================
+   TERMINE
+   ================================ */
+
+function zeigeTermine() {
+
+    zeigeIframe(
+        urls.termine
+    );
+
+    aktiviereNavigation(
+        "nav-termine"
+    );
+
+}
+
+
+/* ================================
+   MEHR
+   ================================ */
+
+function zeigeMehr() {
+
+
+    document
+        .getElementById("anzeige")
+        .style.display =
+        "none";
+
+    document.getElementById("kartenSeite").style.display = "none";
+
+
+    document
+        .getElementById("mehrSeite")
+        .style.display =
+        "block";
+
+
+    aktiviereNavigation(
+        "nav-mehr"
+    );
+
+}
+
+
+
+
+/* ================================
+   VEREINE
+   ================================ */
+
+function zeigeDorfladen() {
+
+    document
+        .getElementById("anzeige")
+        .style.display = "none";
+
+    document
+        .getElementById("mehrSeite")
+        .style.display = "none";
+
+    document
+        .getElementById("kartenSeite")
+        .style.display = "none";
+
+    document
+        .getElementById("dorfladenSeite")
+        .style.display = "block";
+
+    zeigeDorfladenMenue();
+
+    aktiviereNavigation(
+        "nav-mehr"
+    );
+
+}
+
+
+
+function zeigeDorfladenMenue() {
+
+    document
+        .getElementById("dorfladenMenue")
+        .style.display = "block";
+
+    document
+        .getElementById("dorfladenInhalt")
+        .style.display = "none";
+
+    document
+        .getElementById("dorfladenIframe")
+        .src = "about:blank";
+}
+
+
+
+function zeigeDorfladenInhalt(bereich) {
+
+    const menue =
+        document.getElementById("dorfladenMenue");
+
+    const inhalt =
+        document.getElementById("dorfladenInhalt");
+
+    const text =
+        document.getElementById("dorfladenText");
+
+    const iframe =
+        document.getElementById("dorfladenIframe");
+
+    menue.style.display = "none";
+    inhalt.style.display = "block";
+
+    text.style.display = "block";
+    iframe.style.display = "none";
+    iframe.src = "about:blank";
+
+    if (bereich === "sortiment") {
+
+        text.innerHTML = `
+            <h2>Sortiment</h2>
+
+            <img
+                src="images/dorfladen_front.png"
+                alt="Dorfladen Hagen mit Warenauslage"
+                style="width:100%; border-radius:16px; margin:8px 0 20px 0;"
+            >
+
+            <p>
+                Im Dorfladen gibt es ein vielseitiges Sortiment für den täglichen Bedarf.
+                Dazu gehören unter anderem regionale Produkte, Bio-Produkte sowie Blumen
+                und weitere saisonale Artikel.
+            </p>
+
+            <img
+                src="images/dorfladen_sortiment.png"
+                alt="Produkte im Dorfladen"
+                style="width:100%; border-radius:16px; margin:14px 0 20px 0;"
+            >
+        `;
+
+        return;
     }
 
+    if (bereich === "steckbrief") {
 
-    function ladeSeite(url, buttonID) {
+        text.innerHTML = `
+            <h2>Unser Dorfladen Hagen</h2>
 
-        document.getElementById("anzeige").src = url;
+            <img
+                src="images/dorfladen_aussen.png"
+                alt="Dorfladen Hagen"
+                style="width:100%; border-radius:16px; margin:8px 0 20px 0;"
+            >
 
-        alleButtonsZuruecksetzen();
+            <p>
+                Der Dorfladen wurde im Herbst 2019 gegründet,
+                nachdem das letzte Lebensmittelgeschäft im Ort
+                geschlossen hatte.
+            </p>
 
-        document
-            .getElementById(buttonID)
-            .classList.add("aktiv");
+            <p>
+                Rund 250 Gesellschafterinnen und Gesellschafter
+                tragen den Dorfladen mit.
+            </p>
 
+            <h3>Eine gute Nahversorgung</h3>
+
+            <p>
+                Ziel ist eine gute und bezahlbare Versorgung im Ort.
+                Zum Sortiment gehören zunehmend regionale Produkte,
+                zum Beispiel Kartoffeln, Eier, Käse, Wurstwaren
+                und Fisch aus der näheren Umgebung.
+            </p>
+
+            <h3>Sozialer Dorfmittelpunkt</h3>
+
+            <p>
+                Der Dorfladen soll nicht nur Einkaufsort,
+                sondern auch Treffpunkt für die Dorfgemeinschaft sein.
+                Freundlichkeit, Hilfsbereitschaft und Service
+                stehen dabei im Mittelpunkt.
+            </p>
+        `;
+
+        return;
     }
 
+    if (bereich === "geschenkkoerbe") {
 
-    function zeigeStart() {
+        text.innerHTML = `
+            <h2>Geschenkkörbe / Weihnachtspakete</h2>
 
-        ladeSeite(
-            urls.start,
-            "button-start"
-        );
+            <img
+                src="images/geschenk_1.png"
+                alt="Weihnachtliche Geschenkidee des Dorfladens"
+                style="width:100%; border-radius:16px; margin:8px 0 16px 0;"
+            >
 
+            <img
+                src="images/geschenk_2.png"
+                alt="Ihr Geschenk vom Dorfladen"
+                style="width:100%; border-radius:16px; margin:0 0 16px 0;"
+            >
+
+            <img
+                src="images/geschenk_3.png"
+                alt="Information zur Spendenaktion"
+                style="width:100%; border-radius:16px; margin:0 0 20px 0;"
+            >
+
+            <p>
+                Der Dorfladen bietet Weihnachtspakete mit
+                überwiegend regionalen Lebensmitteln an.
+            </p>
+
+            <h3>Paket 1 – 60,00 €</h3>
+            <p>
+                Lebensmittel und Spezialitäten,
+                einschließlich eines kleinen alkoholischen Artikels.
+            </p>
+
+            <h3>Paket 2 – 45,00 €</h3>
+            <p>
+                Eine ähnliche Zusammenstellung,
+                jedoch ohne Alkohol.
+            </p>
+
+            <p>
+                In jedem Paket ist außerdem eine
+                10-Euro-Spende an die Tafel Arnsberg-Sundern enthalten.
+            </p>
+
+            <p>
+                Bestellung beim Verkaufsteam:<br>
+                Telefon / WhatsApp: +49 160 1648435<br>
+                E-Mail: info@dorfladen-hagen.de
+            </p>
+        `;
+
+        return;
     }
+}
 
 
-    function zeigeNews() {
 
-        ladeSeite(
-            urls.news,
-            "button-news"
-        );
+function zeigeVereine() {
 
+    zeigeIframe(
+        urls.vereine
+    );
+
+    aktiviereNavigation(
+        "nav-mehr"
+    );
+
+}
+
+
+/* ================================
+   DORFCHRONIK
+   ================================ */
+
+function zeigeChronik() {
+
+    zeigeIframe(
+        urls.chronik
+    );
+
+    aktiviereNavigation(
+        "nav-mehr"
+    );
+
+}
+
+
+/* ================================
+   STAMMTISCHE
+   ================================ */
+
+function zeigeStammtische() {
+
+    zeigeIframe(
+        urls.stammtische
+    );
+
+    aktiviereNavigation(
+        "nav-mehr"
+    );
+
+}
+
+
+
+
+/* ================================
+   KARTE
+   ================================ */
+const kartenPunkte = [
+    {
+        "title": "Splitkasten",
+        "subtitle": "Bei Glatteis für Trucker von Vorteil.",
+        "lat": 51.25363028,
+        "lon": 7.969908154,
+        "color": "lightgreen"
+    },
+    {
+        "title": "Alter Steinbruch",
+        "subtitle": "Paraglide-Flughafen.",
+        "lat": 51.23941222,
+        "lon": 7.95713799,
+        "color": "yellow"
+    },
+    {
+        "title": "Am Stein",
+        "subtitle": "Steilste Straße der Welt in Hagen.",
+        "lat": 51.25624507,
+        "lon": 7.969874699,
+        "color": "blue"
+    },
+    {
+        "title": "Blitzer",
+        "subtitle": "An oder Aus? Oder Risiko?",
+        "lat": 51.25746138,
+        "lon": 7.967402071,
+        "color": "mediumred"
+    },
+    {
+        "title": "Vogelstange",
+        "subtitle": "Ort der Entscheidung",
+        "lat": 51.25751252,
+        "lon": 7.968331858,
+        "color": "lightgreen"
+    },
+    {
+        "title": "Kreisverkehr",
+        "subtitle": "Gut, dass die Ampel weg ist.",
+        "lat": 51.26039159,
+        "lon": 7.957528435,
+        "color": "lightyellow"
+    },
+    {
+        "title": "Schröder Wildewiese Forstbetrieb",
+        "subtitle": "Nummernschild \"HSK-SW-XXX\"",
+        "lat": 51.23905322,
+        "lon": 7.996547261,
+        "color": "lightblue"
+    },
+    {
+        "title": "Holzunikate",
+        "subtitle": "Der Schreiner mit dem Fisch.",
+        "lat": 51.23872846,
+        "lon": 7.995948235,
+        "color": "lightblue"
+    },
+    {
+        "title": "Steinbruch",
+        "subtitle": "Namensgeber für die Kurve",
+        "lat": 51.27077484,
+        "lon": 7.950329356,
+        "color": "lightblue"
+    },
+    {
+        "title": "Betonwerk Huxol",
+        "subtitle": "Marmorstein + Eisen bricht, Beton nicht.",
+        "lat": 51.26065522,
+        "lon": 7.951819665,
+        "color": "lightblue"
+    },
+    {
+        "title": "Sägewerk Schäfer",
+        "subtitle": "Zäune,Paletten,Hochsitze:Alles aus Holz",
+        "lat": 51.26118249,
+        "lon": 7.95256823,
+        "color": "lightblue"
+    },
+    {
+        "title": "Menshen Kunststofftechnik",
+        "subtitle": "Kunststoffkonstrukte für Alles",
+        "lat": 51.26199966,
+        "lon": 7.952497825,
+        "color": "lightblue"
+    },
+    {
+        "title": "Sorpetaler Fensterbau",
+        "subtitle": "Größter Fensterbauer im Ort",
+        "lat": 51.26287553,
+        "lon": 7.953124154,
+        "color": "lightblue"
+    },
+    {
+        "title": "Wildschweinkurve",
+        "subtitle": "Letztes Wildschwein vor Rönkhausen.",
+        "lat": 51.23814986,
+        "lon": 7.946055677,
+        "color": "lightblue"
+    },
+    {
+        "title": "Windrad aufm Lenscheid",
+        "subtitle": "Größte Windenergieanlage Südsunderns.",
+        "lat": 51.24402816,
+        "lon": 7.975882338,
+        "color": "darkgreen"
+    },
+    {
+        "title": "Schranke",
+        "subtitle": "Auf oder zu?",
+        "lat": 51.23840065,
+        "lon": 8.007757138,
+        "color": "darkred"
+    },
+    {
+        "title": "Schwarze Piste",
+        "subtitle": "Für die ganz ganz Mutigen",
+        "lat": 51.23964213,
+        "lon": 8.002778166,
+        "color": "white"
+    },
+    {
+        "title": "Baggeröer´s Skigeschäft",
+        "subtitle": "Ski, Snowboards, Wachs, Schlitten, ....",
+        "lat": 51.23900442,
+        "lon": 7.998458544,
+        "color": "yellow"
+    },
+    {
+        "title": "Autobahn",
+        "subtitle": "Landschaftlich wertvolle Relaxpiste.",
+        "lat": 51.2436111,
+        "lon": 8.002720642,
+        "color": "white"
+    },
+    {
+        "title": "Schlittenlift",
+        "subtitle": "Förderband für Lauffaule.",
+        "lat": 51.23973303,
+        "lon": 7.994825467,
+        "color": "white"
+    },
+    {
+        "title": "Skischullift",
+        "subtitle": "Hier gibt´s n Lolli, wenn´s nicht klappt.",
+        "lat": 51.23866956,
+        "lon": 7.998204275,
+        "color": "white"
+    },
+    {
+        "title": "Gnurrenlift",
+        "subtitle": "Wenn er auf ist, ist was los!",
+        "lat": 51.24068246,
+        "lon": 8.000672698,
+        "color": "white"
+    },
+    {
+        "title": "Schomberglift",
+        "subtitle": "Der Lange!",
+        "lat": 51.24207362,
+        "lon": 7.996522198,
+        "color": "white"
+    },
+    {
+        "title": "Sorpelift",
+        "subtitle": "Kurz und knackig, beleuchtet: Top!",
+        "lat": 51.24053112,
+        "lon": 7.998335177,
+        "color": "white"
+    },
+    {
+        "title": "Hagener Kreuz",
+        "subtitle": "Letzte vor Allendorf,dann geht´s bergab.",
+        "lat": 51.2589517,
+        "lon": 7.936906199,
+        "color": "lightblue"
+    },
+    {
+        "title": "Herrentisch",
+        "subtitle": "Gebaut zum 700-Jährigen Jubiläum der Freiheit.",
+        "lat": 51.25901177,
+        "lon": 7.937407385,
+        "color": "mediumgreen"
+    },
+    {
+        "title": "Allendorfer Brünneken",
+        "subtitle": "Einmal im Jahr feiern Allendorf und Hagen hier gemeinsam eine   Freiluftmesse.",
+        "lat": 51.26876818,
+        "lon": 7.942189994,
+        "color": "olive"
+    },
+    {
+        "title": "Hagener Brünneken",
+        "subtitle": "Hier läuft ein heilsames Rinnsal durch ein Kapellchen.",
+        "lat": 51.26679697,
+        "lon": 7.946905992,
+        "color": "lightgreen"
+    },
+    {
+        "title": "Altglascontainer",
+        "subtitle": "Immer schön trennen!",
+        "lat": 51.26241905,
+        "lon": 7.953989598,
+        "color": "lightyellow"
+    },
+    {
+        "title": "Altglascontainer",
+        "subtitle": "Nicht nach 18 Uhr, Ihr Strolche!",
+        "lat": 51.25778353,
+        "lon": 7.967039302,
+        "color": "lightyellow"
+    },
+    {
+        "title": "Nehlingshof",
+        "subtitle": "Ein Ferienvergnügen für die ganze Familie",
+        "lat": 51.25677817,
+        "lon": 7.953894168,
+        "color": "lightgreen"
+    },
+    {
+        "title": "Pension Hoppe",
+        "subtitle": "Urlaub mitten in der Natur",
+        "lat": 51.24841195,
+        "lon": 7.979944466,
+        "color": "green"
+    },
+    {
+        "title": "Hebammenpraxis",
+        "subtitle": "Kleiner Schatz",
+        "lat": 51.26031793,
+        "lon": 7.961936067,
+        "color": "blue"
+    },
+    {
+        "title": "Steinbergs Wildewiese",
+        "subtitle": "Ob Alm, Restaurant, Hotel: Topadresse im Sauerland!",
+        "lat": 51.23909929,
+        "lon": 7.997358504,
+        "color": "darkorange"
+    },
+    {
+        "title": "Friedhof",
+        "subtitle": "",
+        "lat": 51.25974539,
+        "lon": 7.959024185,
+        "color": "darkgrey"
+    },
+    {
+        "title": "Butze",
+        "subtitle": "Versammlungsort der Dorfjugend",
+        "lat": 51.25971492,
+        "lon": 7.961344813,
+        "color": "mediumred"
+    },
+    {
+        "title": "Landhotel Pingel",
+        "subtitle": "Ein schönes Restaurant zu einkehren!",
+        "lat": 51.25921635,
+        "lon": 7.965034564,
+        "color": "blue"
+    },
+    {
+        "title": "Grillhütte",
+        "subtitle": "Hier kann man schön am Feuer feiern.",
+        "lat": 51.26167038,
+        "lon": 7.95410652,
+        "color": "darkgrey"
+    },
+    {
+        "title": "Schmalors Bauernhof",
+        "subtitle": "Frisches Jungbullen- und Schweinefleisch!",
+        "lat": 51.25703952,
+        "lon": 7.941888133,
+        "color": "blue"
+    },
+    {
+        "title": "Dorfladen Hagen",
+        "subtitle": "Lebensmittel: Regional, nachhaltig, lecker!",
+        "lat": 51.26085294,
+        "lon": 7.959947393,
+        "color": "yellow"
+    },
+    {
+        "title": "Aussichtsturm Wildewiese",
+        "subtitle": "Hier kann man sehr weit kucken.",
+        "lat": 51.23811204,
+        "lon": 8.004201551,
+        "color": "blue"
+    },
+    {
+        "title": "Feuerwehr",
+        "subtitle": "Setzt sich in allen Notlagen für uns ein",
+        "lat": 51.26074542,
+        "lon": 7.956857885,
+        "color": "red"
+    },
+    {
+        "title": "Förderverein Hagen-Wildewiese",
+        "subtitle": "Fördert.",
+        "lat": 51.26262001,
+        "lon": 7.955714161,
+        "color": "red"
+    },
+    {
+        "title": "Kindergarten",
+        "subtitle": "Ein schöner Platz, um die Vorschulzeit zu verbringen.",
+        "lat": 51.26056598,
+        "lon": 7.959064791,
+        "color": "orange"
+    },
+    {
+        "title": "Kirche",
+        "subtitle": "St. Nikolaus ist Schutzpatron",
+        "lat": 51.26013555,
+        "lon": 7.959532158,
+        "color": "white"
+    },
+    {
+        "title": "Lenscheid",
+        "subtitle": "Reimt sich auf \"Menschheit\"",
+        "lat": 51.24217155,
+        "lon": 7.972596514,
+        "color": "green"
+    },
+    {
+        "title": "MegaSportsCenter",
+        "subtitle": "Badminton, Boldern, Beachen: Alles geht!",
+        "lat": 51.26231449,
+        "lon": 7.954705228,
+        "color": "green"
+    },
+    {
+        "title": "Musikhaus",
+        "subtitle": "Hier probt der Musikverein.",
+        "lat": 51.26088654,
+        "lon": 7.956983244,
+        "color": "purple"
+    },
+    {
+        "title": "Brückenplatz",
+        "subtitle": "Der analoge Dorfmittelpunkt.",
+        "lat": 51.26066774,
+        "lon": 7.959477706,
+        "color": "white"
+    },
+    {
+        "title": "Osterfeuer",
+        "subtitle": "Zwei Tage nach Karfreitag ist hier richtig was los.",
+        "lat": 51.25855836,
+        "lon": 7.958339959,
+        "color": "blue"
+    },
+    {
+        "title": "Pfarrheim",
+        "subtitle": "Die \"Alte Schule\"",
+        "lat": 51.26038134,
+        "lon": 7.959217462,
+        "color": "blue"
+    },
+    {
+        "title": "Rentnerbänke",
+        "subtitle": "Auch U70-Volk darf hier rasten.",
+        "lat": 51.25789283,
+        "lon": 7.946102542,
+        "color": "yellow"
+    },
+    {
+        "title": "Saal",
+        "subtitle": "Damals eine Bastion gegen Eindringlinge aus dem OE.",
+        "lat": 51.24133984,
+        "lon": 7.949225022,
+        "color": "yellow"
+    },
+    {
+        "title": "Schützenhalle",
+        "subtitle": "Schützenfest und viele andere Events: Hier geht´s ab!",
+        "lat": 51.25973534,
+        "lon": 7.961652413,
+        "color": "orange"
+    },
+    {
+        "title": "Spielplatz",
+        "subtitle": "Rutsche, Schaukel, Sand: Ach, wie schön!",
+        "lat": 51.26040683,
+        "lon": 7.958645423,
+        "color": "purple"
+    },
+    {
+        "title": "Riesenschaukel",
+        "subtitle": "Schwing Dich über´s Lennetal!",
+        "lat": 51.23782425,
+        "lon": 7.996572161,
+        "color": "red"
+    },
+    {
+        "title": "Riesenbank",
+        "subtitle": "Einfach mal den Bimbam / die Seele baumeln lassen.",
+        "lat": 51.23739668,
+        "lon": 7.998694398,
+        "color": "red"
+    },
+    {
+        "title": "Panoramabilderrahmen",
+        "subtitle": "Mit feinstem Wildewiese/Sauerlandhintergrund.",
+        "lat": 51.23814816,
+        "lon": 8.003650287,
+        "color": "red"
+    },
+    {
+        "title": "Engelsflügel",
+        "subtitle": "Instagrammability aufm Schomberg",
+        "lat": 51.23718721,
+        "lon": 8.001468019,
+        "color": "red"
+    },
+    {
+        "title": "XXL-Murmelbahn",
+        "subtitle": "Kugelspaß für Groß und Mittel und Klein",
+        "lat": 51.24275355,
+        "lon": 8.006609195,
+        "color": "red"
+    },
+    {
+        "title": "Dachsbautenweg",
+        "subtitle": "Legendäre Geschichten spielen sich hier ab",
+        "lat": 51.25453939,
+        "lon": 7.948705769,
+        "color": "lightblue"
+    },
+    {
+        "title": "Hagener Stollen",
+        "subtitle": "Bergbaugeschichte aus dem Sauerland",
+        "lat": 51.26126574,
+        "lon": 7.960474336,
+        "color": "blue"
+    },
+    {
+        "title": "Mühlenteich",
+        "subtitle": "an der alten Hagener Mühle",
+        "lat": 51.2611335,
+        "lon": 7.957134736,
+        "color": "blue"
+    },
+    {
+        "title": "Wall",
+        "subtitle": "direkt neben der Sorpe spazieren",
+        "lat": 51.26112811,
+        "lon": 7.958200435,
+        "color": "blue"
     }
+];
+
+let dorfkarte = null;
+const markerFarben = {lightgreen:'#86c779',yellow:'#f2c94c',blue:'#2f80ed',mediumred:'#d9534f',lightyellow:'#f6e58d',lightblue:'#74b9ff',darkgreen:'#277a45',darkred:'#9b2c2c',white:'#f5f5f5',mediumgreen:'#4fa66b',olive:'#808000',green:'#27ae60',darkorange:'#d96b00',darkgrey:'#555555',red:'#d63031',orange:'#f39c12',purple:'#8e44ad'};
+function zeigeKarte(){
+ document.getElementById('anzeige').style.display='none';
+ document.getElementById('mehrSeite').style.display='none';
+ document.getElementById('kartenSeite').style.display='block';
+ aktiviereNavigation('nav-mehr');
+ if(!dorfkarte){
+  dorfkarte=L.map('dorfkarte').setView([51.249995635027,7.974298623832],13);
+  L.maplibreGL({style:'https://tiles.openfreemap.org/styles/liberty'}).addTo(dorfkarte);
+  kartenPunkte.forEach(function(p){
+   const farbe=markerFarben[p.color]||'#43996f';
+   const icon=L.divIcon({className:'',html:'<div class="kartenMarker" style="background:'+farbe+'"></div>',iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]});
+   L.marker([p.lat,p.lon],{icon:icon}).addTo(dorfkarte).bindPopup('<strong>'+escapeHtml(p.title)+'</strong>'+(p.subtitle?'<br>'+escapeHtml(p.subtitle):''));
+  });
+ }
+ setTimeout(function(){dorfkarte.invalidateSize();},100);
+}
+function escapeHtml(t){return String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');}
+
+/* ================================
+   AUTOMATISCHE RÜCKKEHR
+   NACH 5 MINUTEN
+   ================================ */
+
+let rueckkehrTimer;
 
 
-    function zeigeTermine() {
-
-        ladeSeite(
-            urls.termine,
-            "button-termine"
-        );
-
-    }
+function timerNeuStarten() {
 
 
-    /*
-       Automatische Rückkehr zur Startseite.
-
-       Momentan 5 Minuten.
-    */
-
-    let timer;
-
-
-    function timerNeuStarten() {
-
-        clearTimeout(timer);
-
-        timer = setTimeout(function() {
-
-            zeigeStart();
-
-        }, 5 * 60 * 1000);
-
-    }
-
-
-    document.addEventListener(
-        "click",
-        timerNeuStarten
+    clearTimeout(
+        rueckkehrTimer
     );
 
 
-    document.addEventListener(
-        "touchstart",
-        timerNeuStarten
-    );
+    rueckkehrTimer =
+        setTimeout(
+
+            function() {
+
+                zeigeStart();
+
+            },
+
+            5 * 60 * 1000
+
+        );
+
+}
 
 
-    timerNeuStarten();
+document.addEventListener(
+    "click",
+    timerNeuStarten
+);
+
+
+document.addEventListener(
+    "touchstart",
+    timerNeuStarten
+);
+
+
+zeigeStart();
+
+timerNeuStarten();
 
 </script>
 
