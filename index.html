@@ -383,7 +383,7 @@ body {
 
 
 /* ================================
-   EIGENE STARTSEITE v0.9.4.2
+   EIGENE STARTSEITE v0.9.5
    ================================ */
 
 #startSeite {
@@ -822,6 +822,182 @@ nav {
     font-size: 52px !important;
 }
 
+
+/* ================================
+   KIOSK-ANPASSUNGEN v0.9.5
+   ================================ */
+
+/* Hauptnavigation: deutlich mehr Abstand */
+nav {
+    gap: 70px !important;
+    padding-left: 90px !important;
+    padding-right: 90px !important;
+    justify-content: center !important;
+}
+
+.navButton {
+    flex: 0 1 360px !important;
+    min-width: 300px !important;
+    margin: 0 !important;
+}
+
+/* Mehr-Seite: Hintergrundbilder wie auf Start */
+#mehrSeite {
+    position: relative !important;
+    overflow-y: auto !important;
+    background: transparent !important;
+    padding: 120px 110px 420px 110px !important;
+}
+
+.mehrHintergrund {
+    position: fixed;
+    inset: 0 0 320px 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.mehrBildHaelfte {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+.mehrBildHaelfte.oben { top: 0; }
+.mehrBildHaelfte.unten { bottom: 0; }
+
+.mehrBild {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.35s ease-in-out, opacity 1.35s ease-in-out;
+    will-change: transform, opacity;
+}
+
+.mehrBild.aktuell { transform: translateX(0); opacity: 1; }
+.mehrBild.naechstesRechts { transform: translateX(100%); opacity: 1; }
+.mehrBild.naechstesLinks { transform: translateX(-100%); opacity: 1; }
+.mehrBild.rausLinks { transform: translateX(-100%); opacity: .95; }
+.mehrBild.rausRechts { transform: translateX(100%); opacity: .95; }
+
+.mehrAbdunklung {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.16);
+}
+
+#mehrSeite > *:not(.mehrHintergrund) {
+    position: relative;
+    z-index: 2;
+}
+
+#mehrSeite h1,
+#mehrSeite h2 {
+    font-size: 132px !important;
+    margin-bottom: 90px !important;
+    color: #173a2a !important;
+    background: rgba(255,255,255,.72) !important;
+    border-radius: 34px !important;
+    padding: 24px 40px !important;
+    width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.mehrGrid {
+    gap: 70px !important;
+}
+
+.mehrButton {
+    min-height: 520px !important;
+    font-size: 98px !important;
+    border-radius: 44px !important;
+    padding: 62px 54px !important;
+    background: rgba(255,255,255,.72) !important;
+    backdrop-filter: blur(5px) !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,.18) !important;
+}
+
+.mehrButton span {
+    font-size: 98px !important;
+    line-height: 1.15 !important;
+}
+
+.mehrIcon {
+    font-size: 138px !important;
+    margin-bottom: 24px !important;
+}
+
+/* Dorfladen: transparente Karten/Buttons und nochmals größer */
+#dorfladenSeite {
+    background: transparent !important;
+    padding: 120px 110px 420px 110px !important;
+}
+
+#dorfladenSeite h1,
+#dorfladenSeite h2 {
+    font-size: 122px !important;
+    line-height: 1.15 !important;
+    background: rgba(255,255,255,.72) !important;
+    border-radius: 34px !important;
+    padding: 28px 36px !important;
+}
+
+#dorfladenSeite h3 {
+    font-size: 88px !important;
+}
+
+#dorfladenSeite p,
+#dorfladenSeite li,
+#dorfladenSeite a,
+#dorfladenSeite span {
+    font-size: 66px !important;
+    line-height: 1.5 !important;
+}
+
+#dorfladenSeite .mehrButton {
+    min-height: 470px !important;
+    font-size: 88px !important;
+    background: rgba(255,255,255,.72) !important;
+    backdrop-filter: blur(5px) !important;
+    border-radius: 42px !important;
+}
+
+#dorfladenInhalt {
+    background: rgba(255,255,255,.72) !important;
+    border-radius: 34px !important;
+    padding: 34px !important;
+}
+
+/* Karte: mehr Platz, zentrierter Eindruck */
+#kartenSeite {
+    background: white !important;
+}
+
+#dorfkarte {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#kartenSeite .leaflet-control-zoom a {
+    width: 120px !important;
+    height: 120px !important;
+    line-height: 120px !important;
+    font-size: 70px !important;
+}
+
+.leaflet-popup-content {
+    font-size: 50px !important;
+    line-height: 1.4 !important;
+}
+
+.leaflet-popup-content strong {
+    font-size: 58px !important;
+}
+
 </style>
 </head>
 
@@ -840,7 +1016,7 @@ nav {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.9.4.2
+         EIGENE STARTSEITE v0.9.5
          ============================ -->
 
     <div id="startSeite">
@@ -938,6 +1114,22 @@ nav {
          ============================ -->
 
     <div id="mehrSeite">
+        <div class="mehrHintergrund" aria-hidden="true">
+            <div class="mehrBildHaelfte oben">
+                <div id="mehrObenAktuell" class="mehrBild aktuell"
+                     style="background-image:url('images/start_1.png');"></div>
+                <div id="mehrObenNeu" class="mehrBild naechstesRechts"
+                     style="background-image:url('images/start_3.png');"></div>
+            </div>
+            <div class="mehrBildHaelfte unten">
+                <div id="mehrUntenAktuell" class="mehrBild aktuell"
+                     style="background-image:url('images/start_2.png');"></div>
+                <div id="mehrUntenNeu" class="mehrBild naechstesLinks"
+                     style="background-image:url('images/start_4.png');"></div>
+            </div>
+            <div class="mehrAbdunklung"></div>
+        </div>
+
 
 
         <h1 class="mehrTitel">
@@ -1258,7 +1450,7 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.9.4.2
+   STARTSEITE v0.9.5
    ================================ */
 
 const startBilder = [
@@ -1476,6 +1668,75 @@ async function ladeNeuesteNews() {
     }
 }
 
+
+let mehrBildTimer = null;
+let mehrBildIndex = 0;
+
+function wechsleMehrBilder() {
+
+    const obenAlt = document.getElementById("mehrObenAktuell");
+    const obenNeu = document.getElementById("mehrObenNeu");
+    const untenAlt = document.getElementById("mehrUntenAktuell");
+    const untenNeu = document.getElementById("mehrUntenNeu");
+
+    if (!obenAlt || !obenNeu || !untenAlt || !untenNeu) {
+        return;
+    }
+
+    const neuerObenIndex =
+        (mehrBildIndex + 2) % startBilder.length;
+
+    const neuerUntenIndex =
+        (mehrBildIndex + 3) % startBilder.length;
+
+    obenNeu.style.backgroundImage =
+        `url("${startBilder[neuerObenIndex]}")`;
+
+    untenNeu.style.backgroundImage =
+        `url("${startBilder[neuerUntenIndex]}")`;
+
+    obenNeu.className = "mehrBild naechstesRechts";
+    untenNeu.className = "mehrBild naechstesLinks";
+
+    void obenNeu.offsetWidth;
+
+    obenAlt.className = "mehrBild rausLinks";
+    untenAlt.className = "mehrBild rausRechts";
+
+    obenNeu.className = "mehrBild aktuell";
+    untenNeu.className = "mehrBild aktuell";
+
+    setTimeout(function() {
+
+        obenAlt.style.backgroundImage =
+            obenNeu.style.backgroundImage;
+
+        untenAlt.style.backgroundImage =
+            untenNeu.style.backgroundImage;
+
+        obenAlt.className = "mehrBild aktuell";
+        untenAlt.className = "mehrBild aktuell";
+
+        obenNeu.className = "mehrBild naechstesRechts";
+        untenNeu.className = "mehrBild naechstesLinks";
+
+        mehrBildIndex =
+            (mehrBildIndex + 2) % startBilder.length;
+
+    }, 1450);
+}
+
+function starteMehrBilder() {
+
+    if (!mehrBildTimer) {
+        mehrBildTimer =
+            setInterval(
+                wechsleMehrBilder,
+                20000
+            );
+    }
+}
+
 function starteStartseite() {
 
     aktualisiereStartZeit();
@@ -1661,6 +1922,8 @@ function zeigeTermine() {
    ================================ */
 
 function zeigeMehr() {
+
+    starteMehrBilder();
 
 
     document
