@@ -383,7 +383,7 @@ body {
 
 
 /* ================================
-   EIGENE STARTSEITE v0.10.1
+   EIGENE STARTSEITE v0.10.2
    ================================ */
 
 #startSeite {
@@ -1191,7 +1191,7 @@ nav {
 
 
 /* ================================
-   MEHR – ETWAS HÖHER v0.10.1
+   MEHR – ETWAS HÖHER v0.10.2
    ================================ */
 
 #mehrSeite[style*="display: block"] {
@@ -1207,7 +1207,7 @@ nav {
 
 
 /* ================================
-   MEHR / DORFLADEN v0.10.1
+   MEHR / DORFLADEN v0.10.2
    ================================ */
 
 /* Die Überschrift "Mehr" bleibt an ihrer normalen Position */
@@ -1301,7 +1301,7 @@ nav {
 
 
 /* ================================
-   STARTSEITE – NEWS GRÖSSER v0.10.1
+   STARTSEITE – NEWS GRÖSSER v0.10.2
    ================================ */
 
 #startNewsKarte {
@@ -1331,6 +1331,60 @@ nav {
     margin-bottom: 30px !important;
 }
 
+
+/* ================================
+   BUGFIX / LAYOUT v0.10.2
+   ================================ */
+
+/* Überschrift "Mehr" wieder etwas tiefer */
+#mehrSeite .mehrTitel {
+    position: relative !important;
+    top: 95px !important;
+}
+
+/* Nur die Subbuttons leicht nach oben */
+#mehrSeite .mehrGrid {
+    position: relative !important;
+    top: -35px !important;
+}
+
+/* Dorfladen-Hintergrund wirklich sichtbar */
+#dorfladenSeite {
+    position: relative !important;
+    isolation: isolate !important;
+    background: transparent !important;
+    overflow: hidden auto !important;
+}
+
+.dorfladenHintergrund {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    z-index: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+#dorfladenSeite > #dorfladenMenue,
+#dorfladenSeite > #dorfladenInhalt {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Die beiden Bildhälften sollen den kompletten Dorfladen-Hintergrund füllen */
+.dorfladenBildHaelfte {
+    width: 100% !important;
+    height: 50% !important;
+}
+
+.dorfladenBild {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
 </style>
 </head>
 
@@ -1349,7 +1403,7 @@ nav {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.10.1
+         EIGENE STARTSEITE v0.10.2
          ============================ -->
 
     <div id="startSeite">
@@ -1796,12 +1850,12 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.10.1
+   STARTSEITE v0.10.2
    ================================ */
 
 
 /* ================================
-   SAISONALE HINTERGRUNDBILDER v0.10.1
+   SAISONALE HINTERGRUNDBILDER v0.10.2
 
    Winter:    Dezember / Januar / Februar
    Frühling:  März / April / Mai
@@ -2551,20 +2605,25 @@ function zeigeMehr() {
     setzeSaisonStartbilder();
     starteMehrBilder();
 
-
     document
         .getElementById("anzeige")
-        .style.display =
-        "none";
+        .style.display = "none";
 
-    document.getElementById("kartenSeite").style.display = "none";
+    document
+        .getElementById("startSeite")
+        .style.display = "none";
 
+    document
+        .getElementById("kartenSeite")
+        .style.display = "none";
+
+    document
+        .getElementById("dorfladenSeite")
+        .style.display = "none";
 
     document
         .getElementById("mehrSeite")
-        .style.display =
-        "block";
-
+        .style.display = "block";
 
     aktiviereNavigation(
         "nav-mehr"
@@ -2589,6 +2648,10 @@ function zeigeDorfladen() {
 
     document
         .getElementById("anzeige")
+        .style.display = "none";
+
+    document
+        .getElementById("startSeite")
         .style.display = "none";
 
     document
