@@ -383,7 +383,7 @@ body {
 
 
 /* ================================
-   EIGENE STARTSEITE v0.9.5
+   EIGENE STARTSEITE v0.9.9
    ================================ */
 
 #startSeite {
@@ -998,6 +998,213 @@ nav {
     font-size: 58px !important;
 }
 
+
+/* ================================
+   KIOSK-NAVIGATION v0.9.6
+   ================================ */
+
+#navigation {
+    max-width: 1900px !important;
+    width: calc(100% - 120px) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 90px !important;
+    padding: 22px 48px !important;
+}
+
+.navButton {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 330px !important;
+    justify-self: center !important;
+    gap: 28px !important;
+    padding: 26px 18px !important;
+}
+
+.navIcon,
+.navIcon svg {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.navButton span {
+    font-size: 58px !important;
+    line-height: 1.1 !important;
+}
+
+
+/* ================================
+   MEHR v0.9.6
+   ================================ */
+
+#mehrSeite {
+    position: relative !important;
+    isolation: isolate !important;
+    background: transparent !important;
+}
+
+.mehrHintergrund {
+    position: absolute !important;
+    inset: 0 !important;
+    min-height: 100% !important;
+    z-index: -1 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+#mehrSeite::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: #eef4f1;
+}
+
+.mehrGrid {
+    gap: 90px !important;
+}
+
+.mehrButton {
+    gap: 42px !important;
+    min-height: 560px !important;
+}
+
+.mehrIcon {
+    margin-bottom: 12px !important;
+}
+
+
+/* ================================
+   DORFLADEN v0.9.6
+   ================================ */
+
+#dorfladenMenue > div {
+    gap: 70px !important;
+}
+
+#dorfladenSeite .mehrButton {
+    min-height: 520px !important;
+    gap: 40px !important;
+    padding: 58px 52px !important;
+    background: rgba(255,255,255,.72) !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,.18) !important;
+}
+
+#dorfladenSeite .mehrIcon {
+    margin-bottom: 10px !important;
+}
+
+
+/* ================================
+   MEHR – ZENTRIERUNG v0.9.7
+   ================================ */
+
+#mehrSeite .mehrGrid {
+    width: min(82%, 1500px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-items: center !important;
+}
+
+#mehrSeite .mehrButton {
+    width: 100% !important;
+    max-width: 1350px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* ================================
+   STARTSEITE – GRÖSSERE INFOS v0.9.7
+   ================================ */
+
+.startDatum {
+    font-size: 74px !important;
+    line-height: 1.15 !important;
+    font-weight: 800 !important;
+}
+
+.startUhrzeit {
+    font-size: 118px !important;
+    line-height: 1.05 !important;
+}
+
+#startWetter {
+    font-size: 64px !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+}
+
+.startQr {
+    width: min(36vw, 650px) !important;
+    right: 42px !important;
+    bottom: 108px !important;
+    padding: 20px !important;
+}
+
+.startQrTitel {
+    font-size: 40px !important;
+    line-height: 1.2 !important;
+}
+
+.startQr img {
+    width: 100% !important;
+    height: auto !important;
+}
+
+
+/* ================================
+   KIOSK-ANPASSUNGEN v0.9.8
+   ================================ */
+
+/* Mehr-Seite: kompletter Inhalt wirklich mittig im sichtbaren Bereich */
+#mehrSeite[style*="display: block"] {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 80px !important;
+    padding-bottom: 360px !important;
+}
+
+#mehrSeite .mehrTitel {
+    width: min(82%, 1500px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+}
+
+#mehrSeite .mehrGrid {
+    width: min(82%, 1500px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+    justify-items: center !important;
+    align-content: center !important;
+}
+
+/* Wetterinformation auf der Startseite nochmals größer */
+#startWetter {
+    font-size: 88px !important;
+    line-height: 1.12 !important;
+    font-weight: 850 !important;
+}
+
+
+/* ================================
+   MEHR – ETWAS HÖHER v0.9.9
+   ================================ */
+
+#mehrSeite[style*="display: block"] {
+    justify-content: center !important;
+    transform: none !important;
+}
+
+#mehrSeite .mehrTitel,
+#mehrSeite .mehrGrid {
+    position: relative !important;
+    top: -150px !important;
+}
+
 </style>
 </head>
 
@@ -1016,7 +1223,7 @@ nav {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.9.5
+         EIGENE STARTSEITE v0.9.9
          ============================ -->
 
     <div id="startSeite">
@@ -1055,9 +1262,8 @@ nav {
 
                 <div class="startKarte">
                     <div class="startInfoTitel">Wetter</div>
-                    <div id="startWetter" class="startInfoWert">– °C</div>
-                    <div class="startInfoHinweis">
-                        Wetterdienst wird als nächster Schritt eingebunden.
+                    <div id="startWetter" class="startInfoWert">
+                        Wetter wird geladen …
                     </div>
                 </div>
 
@@ -1189,10 +1395,6 @@ nav {
 
                 <span>
                     Dorfchronik
-                </span>
-
-                <span class="mehrHinweis">
-                    Wildes Hagen
                 </span>
 
             </button>
@@ -1450,15 +1652,129 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.9.5
+   STARTSEITE v0.9.9
    ================================ */
 
-const startBilder = [
-    "images/start_1.png",
-    "images/start_3.png",
-    "images/start_2.png",
-    "images/start_4.png"
-];
+
+/* ================================
+   SAISONALE HINTERGRUNDBILDER v0.9.9
+
+   Winter:    Dezember / Januar / Februar
+   Frühling:  März / April / Mai
+   Sommer:    Juni / Juli / August
+   Herbst:    September / Oktober / November
+   ================================ */
+
+const saisonBilder = {
+
+    winter: [
+        "https://cdn.appack.de/sundern/images/Winter%20Weihnachten%20Schnee%20Kindergarten.jpeg",
+        "https://cdn.appack.de/sundern/images/WhatsApp%20Bild%202023-03-07%20um%2022.36.181.jpg",
+        "https://cdn.appack.de/sundern/images/IMG-20230119-WA0045.jpg",
+        "https://cdn.appack.de/sundern/images/Winter%20Dunkel%20Weihnachten%20Schnee%20Hauptstra%C3%9Fe%203.jpeg",
+        "https://cdn.appack.de/sundern/images/WhatsApp%20Bild%202023-03-07%20um%2022.36.1811.jpg",
+        "https://cdn.appack.de/sundern/images/Winter%20Weihnachten%20Schnee%20Kirche%20Pfarrheim%20Br%C3%BCckenplatz.jpeg",
+        "https://cdn.appack.de/sundern/images/IMG-20230118-WA0059.jpg",
+        "https://cdn.appack.de/sundern/images/IMG-20230118-WA0061.jpg",
+        "https://cdn.appack.de/sundern/images/WhatsApp%20Bild%202023-03-07%20um%2022.36.171.jpg"
+    ],
+
+    fruehling: [
+        "https://cdn.appack.de/sundern/images/IMG_3086.jpeg",
+        "https://cdn.appack.de/sundern/images/Fr%C3%BChling%20Hintergrund%20Galerie%2014l.jpg.png.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_0477.jpeg",
+        "https://cdn.appack.de/sundern/images/IMG_0497.jpeg",
+        "https://cdn.appack.de/sundern/images/Fr%C3%BChling_8.jpg",
+        "https://cdn.appack.de/sundern/images/Fr%C3%BChling_1.jpg",
+        "https://cdn.appack.de/sundern/images/Fr%C3%BChling_3.jpg",
+        "https://cdn.appack.de/sundern/images/Fr%C3%BChling%20Hintergrund%20Galerie%2013%20Wildewiese%20Schaukel.jpg.png.jpg"
+    ],
+
+    sommer: [
+        "https://cdn.appack.de/sundern/images/IMG_6230.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6248.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6219.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6250.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6260.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6266.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6276.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6225.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6252.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6280.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6256.jpg",
+        "https://cdn.appack.de/sundern/images/IMG_6261.jpg"
+    ],
+
+    herbst: [
+        "https://cdn.appack.de/sundern/images/Herbst%20Br%C3%BCckenplatz%202.JPG",
+        "https://cdn.appack.de/sundern/images/Herbst%20Br%C3%BCckenplatz%204.JPG",
+        "https://cdn.appack.de/sundern/images/Herbst%20Panorama%20Hagen%204.JPG",
+        "https://cdn.appack.de/sundern/images/Musikhaus%20Feuerwehrhaus%20Herbst.JPG",
+        "https://cdn.appack.de/sundern/images/Herbst%20HAgen%205.JPG",
+        "https://cdn.appack.de/sundern/images/Herbst%20Hagen%204.JPG",
+        "https://cdn.appack.de/sundern/images/Herbst%20Hagen%203.JPG",
+        "https://cdn.appack.de/sundern/images/Herbst%20Hagen%202.JPG",
+        "https://cdn.appack.de/sundern/images/Herbst%20Kirche.JPG"
+    ]
+};
+
+function aktuelleJahreszeit() {
+
+    const monat = new Date().getMonth() + 1;
+
+    if (monat === 12 || monat <= 2) {
+        return "winter";
+    }
+
+    if (monat >= 3 && monat <= 5) {
+        return "fruehling";
+    }
+
+    if (monat >= 6 && monat <= 8) {
+        return "sommer";
+    }
+
+    return "herbst";
+}
+
+let startBilder =
+    saisonBilder[aktuelleJahreszeit()];
+
+function setzeSaisonStartbilder() {
+
+    startBildIndex = 0;
+    mehrBildIndex = 0;
+
+    const bilder = startBilder;
+
+    const elemente = [
+        ["startObenAktuell", 0],
+        ["startUntenAktuell", 1],
+        ["startObenNeu", 2],
+        ["startUntenNeu", 3],
+        ["mehrObenAktuell", 0],
+        ["mehrUntenAktuell", 1],
+        ["mehrObenNeu", 2],
+        ["mehrUntenNeu", 3]
+    ];
+
+    elemente.forEach(function(eintrag) {
+
+        const element =
+            document.getElementById(eintrag[0]);
+
+        if (!element) {
+            return;
+        }
+
+        const bild =
+            bilder[eintrag[1] % bilder.length];
+
+        element.style.backgroundImage =
+            `url("${bild}")`;
+    });
+}
+
 
 let startBildIndex = 0;
 let startBildTimer = null;
@@ -1563,6 +1879,86 @@ function wechsleStartBilder() {
             startBilder.length;
 
     }, 1450);
+}
+
+
+
+/* ================================
+   LIVE-WETTER
+   ================================ */
+
+function wetterText(code) {
+
+    if (code === 0) return ["☀️", "Klar"];
+    if (code === 1) return ["🌤️", "Überwiegend klar"];
+    if (code === 2) return ["⛅", "Teilweise bewölkt"];
+    if (code === 3) return ["☁️", "Bewölkt"];
+    if (code === 45 || code === 48) return ["🌫️", "Nebel"];
+    if ([51,53,55,56,57].includes(code)) return ["🌦️", "Nieselregen"];
+    if ([61,63,65,66,67].includes(code)) return ["🌧️", "Regen"];
+    if ([71,73,75,77].includes(code)) return ["🌨️", "Schnee"];
+    if ([80,81,82].includes(code)) return ["🌦️", "Regenschauer"];
+    if ([85,86].includes(code)) return ["🌨️", "Schneeschauer"];
+    if ([95,96,99].includes(code)) return ["⛈️", "Gewitter"];
+
+    return ["🌡️", "Wetter"];
+}
+
+async function ladeWetter() {
+
+    const element =
+        document.getElementById("startWetter");
+
+    if (!element) return;
+
+    try {
+
+        const url =
+            "https://api.open-meteo.com/v1/forecast" +
+            "?latitude=51.2499956" +
+            "&longitude=7.9742986" +
+            "&current=temperature_2m,weather_code" +
+            "&timezone=Europe%2FBerlin";
+
+        const antwort =
+            await fetch(
+                url,
+                { cache: "no-store" }
+            );
+
+        if (!antwort.ok) {
+            throw new Error("Wetter konnte nicht geladen werden.");
+        }
+
+        const daten =
+            await antwort.json();
+
+        const temperatur =
+            Math.round(
+                daten.current.temperature_2m
+            );
+
+        const code =
+            daten.current.weather_code;
+
+        const info =
+            wetterText(code);
+
+        element.textContent =
+            info[0] + " " +
+            temperatur + " °C · " +
+            info[1];
+
+    } catch (fehler) {
+
+        element.textContent =
+            "Wetter aktuell nicht verfügbar";
+
+        console.error(
+            "Wetterfehler:",
+            fehler
+        );
+    }
 }
 
 
@@ -1739,8 +2135,10 @@ function starteMehrBilder() {
 
 function starteStartseite() {
 
+    setzeSaisonStartbilder();
     aktualisiereStartZeit();
     ladeNeuesteNews();
+    ladeWetter();
 
     if (!startBildTimer) {
 
@@ -1760,6 +2158,11 @@ setInterval(
 setInterval(
     ladeNeuesteNews,
     60 * 60 * 1000
+);
+
+setInterval(
+    ladeWetter,
+    15 * 60 * 1000
 );
 
 
@@ -1923,6 +2326,10 @@ function zeigeTermine() {
 
 function zeigeMehr() {
 
+    startBilder =
+        saisonBilder[aktuelleJahreszeit()];
+
+    setzeSaisonStartbilder();
     starteMehrBilder();
 
 
@@ -2654,20 +3061,88 @@ const kartenPunkte = [
 let dorfkarte = null;
 const markerFarben = {lightgreen:'#86c779',yellow:'#f2c94c',blue:'#2f80ed',mediumred:'#d9534f',lightyellow:'#f6e58d',lightblue:'#74b9ff',darkgreen:'#277a45',darkred:'#9b2c2c',white:'#f5f5f5',mediumgreen:'#4fa66b',olive:'#808000',green:'#27ae60',darkorange:'#d96b00',darkgrey:'#555555',red:'#d63031',orange:'#f39c12',purple:'#8e44ad'};
 function zeigeKarte(){
+
  document.getElementById('anzeige').style.display='none';
  document.getElementById('mehrSeite').style.display='none';
+ document.getElementById('dorfladenSeite').style.display='none';
  document.getElementById('kartenSeite').style.display='block';
+
  aktiviereNavigation('nav-mehr');
+
  if(!dorfkarte){
-  dorfkarte=L.map('dorfkarte').setView([51.249995635027,7.974298623832],13);
-  L.maplibreGL({style:'https://tiles.openfreemap.org/styles/liberty'}).addTo(dorfkarte);
+
+  dorfkarte=L.map(
+      'dorfkarte',
+      {
+          zoomControl:true,
+          zoomSnap:0.1,
+          zoomDelta:0.5
+      }
+  );
+
+  L.maplibreGL({
+      style:'https://tiles.openfreemap.org/styles/liberty'
+  }).addTo(dorfkarte);
+
   kartenPunkte.forEach(function(p){
-   const farbe=markerFarben[p.color]||'#43996f';
-   const icon=L.divIcon({className:'',html:'<div class="kartenMarker" style="background:'+farbe+'"></div>',iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]});
-   L.marker([p.lat,p.lon],{icon:icon}).addTo(dorfkarte).bindPopup('<strong>'+escapeHtml(p.title)+'</strong>'+(p.subtitle?'<br>'+escapeHtml(p.subtitle):''));
+
+   const farbe=
+      markerFarben[p.color]||'#43996f';
+
+   const icon=L.divIcon({
+      className:'',
+      html:
+        '<div class="kartenMarker" style="background:'+
+        farbe+
+        '"></div>',
+      iconSize:[30,30],
+      iconAnchor:[15,30],
+      popupAnchor:[0,-28]
+   });
+
+   L.marker(
+      [p.lat,p.lon],
+      {icon:icon}
+   )
+   .addTo(dorfkarte)
+   .bindPopup(
+      '<strong>'+
+      escapeHtml(p.title)+
+      '</strong>'+
+      (p.subtitle
+        ?'<br>'+escapeHtml(p.subtitle)
+        :'')
+   );
   });
  }
- setTimeout(function(){dorfkarte.invalidateSize();},100);
+
+ setTimeout(function(){
+
+    dorfkarte.invalidateSize();
+
+    const grenzen=
+        L.latLngBounds(
+            kartenPunkte.map(
+                p => [p.lat,p.lon]
+            )
+        );
+
+    /*
+       Nur sehr wenig Rand:
+       Dadurch liegen die äußersten Marker
+       fast am Rand der Stele,
+       bleiben aber vollständig sichtbar.
+    */
+    dorfkarte.fitBounds(
+        grenzen,
+        {
+            paddingTopLeft:[38,38],
+            paddingBottomRight:[38,38],
+            animate:false
+        }
+    );
+
+ },250);
 }
 function escapeHtml(t){return String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');}
 
