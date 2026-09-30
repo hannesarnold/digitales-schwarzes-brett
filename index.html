@@ -383,7 +383,7 @@ body {
 
 
 /* ================================
-   EIGENE STARTSEITE v0.9.9
+   EIGENE STARTSEITE v0.10.1
    ================================ */
 
 #startSeite {
@@ -1191,7 +1191,7 @@ nav {
 
 
 /* ================================
-   MEHR – ETWAS HÖHER v0.9.9
+   MEHR – ETWAS HÖHER v0.10.1
    ================================ */
 
 #mehrSeite[style*="display: block"] {
@@ -1203,6 +1203,132 @@ nav {
 #mehrSeite .mehrGrid {
     position: relative !important;
     top: -150px !important;
+}
+
+
+/* ================================
+   MEHR / DORFLADEN v0.10.1
+   ================================ */
+
+/* Die Überschrift "Mehr" bleibt an ihrer normalen Position */
+#mehrSeite .mehrTitel {
+    top: 0 !important;
+}
+
+/* Nur die eigentlichen Unterbuttons etwas höher */
+#mehrSeite .mehrGrid {
+    top: -70px !important;
+}
+
+/* Saisonale Hintergründe auch im Dorfladen */
+#dorfladenSeite {
+    position: relative !important;
+    isolation: isolate !important;
+    background: transparent !important;
+}
+
+.dorfladenHintergrund {
+    position: absolute !important;
+    inset: 0 !important;
+    min-height: 100% !important;
+    z-index: -1 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+.dorfladenBildHaelfte {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+.dorfladenBildHaelfte.oben {
+    top: 0;
+}
+
+.dorfladenBildHaelfte.unten {
+    bottom: 0;
+}
+
+.dorfladenBild {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition:
+        transform 1.35s ease-in-out,
+        opacity 1.35s ease-in-out;
+    will-change: transform, opacity;
+}
+
+.dorfladenBild.aktuell {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.dorfladenBild.naechstesRechts {
+    transform: translateX(100%);
+    opacity: 1;
+}
+
+.dorfladenBild.naechstesLinks {
+    transform: translateX(-100%);
+    opacity: 1;
+}
+
+.dorfladenBild.rausLinks {
+    transform: translateX(-100%);
+    opacity: .95;
+}
+
+.dorfladenBild.rausRechts {
+    transform: translateX(100%);
+    opacity: .95;
+}
+
+.dorfladenAbdunklung {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.16);
+}
+
+#dorfladenSeite > *:not(.dorfladenHintergrund) {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ================================
+   STARTSEITE – NEWS GRÖSSER v0.10.1
+   ================================ */
+
+#startNewsKarte {
+    padding: 42px 46px !important;
+}
+
+#startNewsKarte .startInfoTitel {
+    font-size: 54px !important;
+    margin-bottom: 22px !important;
+}
+
+#startNews {
+    font-size: 72px !important;
+    line-height: 1.18 !important;
+    font-weight: 800 !important;
+}
+
+#startNewsDatum {
+    font-size: 38px !important;
+    line-height: 1.25 !important;
+    margin-top: 18px !important;
+}
+
+#startNewsBild {
+    max-height: 700px !important;
+    border-radius: 28px !important;
+    margin-bottom: 30px !important;
 }
 
 </style>
@@ -1223,7 +1349,7 @@ nav {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.9.9
+         EIGENE STARTSEITE v0.10.1
          ============================ -->
 
     <div id="startSeite">
@@ -1454,6 +1580,24 @@ nav {
         padding:24px;
         box-sizing:border-box;
     ">
+        <div class="dorfladenHintergrund" aria-hidden="true">
+            <div class="dorfladenBildHaelfte oben">
+                <div id="dorfladenObenAktuell"
+                     class="dorfladenBild aktuell"></div>
+                <div id="dorfladenObenNeu"
+                     class="dorfladenBild naechstesRechts"></div>
+            </div>
+
+            <div class="dorfladenBildHaelfte unten">
+                <div id="dorfladenUntenAktuell"
+                     class="dorfladenBild aktuell"></div>
+                <div id="dorfladenUntenNeu"
+                     class="dorfladenBild naechstesLinks"></div>
+            </div>
+
+            <div class="dorfladenAbdunklung"></div>
+        </div>
+
         <div id="dorfladenMenue">
             <h2 style="margin-top:0;">Dorfladen Hagen</h2>
 
@@ -1652,12 +1796,12 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.9.9
+   STARTSEITE v0.10.1
    ================================ */
 
 
 /* ================================
-   SAISONALE HINTERGRUNDBILDER v0.9.9
+   SAISONALE HINTERGRUNDBILDER v0.10.1
 
    Winter:    Dezember / Januar / Februar
    Frühling:  März / April / Mai
@@ -1755,7 +1899,11 @@ function setzeSaisonStartbilder() {
         ["mehrObenAktuell", 0],
         ["mehrUntenAktuell", 1],
         ["mehrObenNeu", 2],
-        ["mehrUntenNeu", 3]
+        ["mehrUntenNeu", 3],
+        ["dorfladenObenAktuell", 0],
+        ["dorfladenUntenAktuell", 1],
+        ["dorfladenObenNeu", 2],
+        ["dorfladenUntenNeu", 3]
     ];
 
     elemente.forEach(function(eintrag) {
@@ -2075,6 +2223,18 @@ function wechsleMehrBilder() {
     const untenAlt = document.getElementById("mehrUntenAktuell");
     const untenNeu = document.getElementById("mehrUntenNeu");
 
+    const dorfladenObenAlt =
+        document.getElementById("dorfladenObenAktuell");
+
+    const dorfladenObenNeu =
+        document.getElementById("dorfladenObenNeu");
+
+    const dorfladenUntenAlt =
+        document.getElementById("dorfladenUntenAktuell");
+
+    const dorfladenUntenNeu =
+        document.getElementById("dorfladenUntenNeu");
+
     if (!obenAlt || !obenNeu || !untenAlt || !untenNeu) {
         return;
     }
@@ -2091,16 +2251,49 @@ function wechsleMehrBilder() {
     untenNeu.style.backgroundImage =
         `url("${startBilder[neuerUntenIndex]}")`;
 
+    if (dorfladenObenNeu && dorfladenUntenNeu) {
+
+        dorfladenObenNeu.style.backgroundImage =
+            `url("${startBilder[neuerObenIndex]}")`;
+
+        dorfladenUntenNeu.style.backgroundImage =
+            `url("${startBilder[neuerUntenIndex]}")`;
+    }
+
     obenNeu.className = "mehrBild naechstesRechts";
     untenNeu.className = "mehrBild naechstesLinks";
+
+    if (dorfladenObenNeu && dorfladenUntenNeu) {
+        dorfladenObenNeu.className =
+            "dorfladenBild naechstesRechts";
+
+        dorfladenUntenNeu.className =
+            "dorfladenBild naechstesLinks";
+    }
 
     void obenNeu.offsetWidth;
 
     obenAlt.className = "mehrBild rausLinks";
     untenAlt.className = "mehrBild rausRechts";
 
+    if (dorfladenObenAlt && dorfladenUntenAlt) {
+        dorfladenObenAlt.className =
+            "dorfladenBild rausLinks";
+
+        dorfladenUntenAlt.className =
+            "dorfladenBild rausRechts";
+    }
+
     obenNeu.className = "mehrBild aktuell";
     untenNeu.className = "mehrBild aktuell";
+
+    if (dorfladenObenNeu && dorfladenUntenNeu) {
+        dorfladenObenNeu.className =
+            "dorfladenBild aktuell";
+
+        dorfladenUntenNeu.className =
+            "dorfladenBild aktuell";
+    }
 
     setTimeout(function() {
 
@@ -2115,6 +2308,32 @@ function wechsleMehrBilder() {
 
         obenNeu.className = "mehrBild naechstesRechts";
         untenNeu.className = "mehrBild naechstesLinks";
+
+        if (
+            dorfladenObenAlt &&
+            dorfladenObenNeu &&
+            dorfladenUntenAlt &&
+            dorfladenUntenNeu
+        ) {
+
+            dorfladenObenAlt.style.backgroundImage =
+                dorfladenObenNeu.style.backgroundImage;
+
+            dorfladenUntenAlt.style.backgroundImage =
+                dorfladenUntenNeu.style.backgroundImage;
+
+            dorfladenObenAlt.className =
+                "dorfladenBild aktuell";
+
+            dorfladenUntenAlt.className =
+                "dorfladenBild aktuell";
+
+            dorfladenObenNeu.className =
+                "dorfladenBild naechstesRechts";
+
+            dorfladenUntenNeu.className =
+                "dorfladenBild naechstesLinks";
+        }
 
         mehrBildIndex =
             (mehrBildIndex + 2) % startBilder.length;
@@ -2361,6 +2580,12 @@ function zeigeMehr() {
    ================================ */
 
 function zeigeDorfladen() {
+
+    startBilder =
+        saisonBilder[aktuelleJahreszeit()];
+
+    setzeSaisonStartbilder();
+    starteMehrBilder();
 
     document
         .getElementById("anzeige")
