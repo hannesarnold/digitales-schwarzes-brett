@@ -1,10 +1,10 @@
 {
   "status": "ok",
-  "checked_at": "2026-10-04T13:15:21.051405+00:00",
-  "id": "6abe5e2a33b2983190a0255d",
-  "title": "Gemeinsames Singen",
+  "checked_at": "2026-10-04T17:39:26.088033+00:00",
+  "id": "6ac28392580e77bfff6077e0",
+  "title": "WP Königinnenwahl 2026",
   "subtitle": "",
-  "publishedDate": "2026-10-01T13:18:00Z",
-  "url": "https://application.appack.de/news/de/shared/6abe5e2a33b2983190a0255d?component=sundern_Application_1765195867222",
-  "image": "https://cdn.appack.de/sundern/filestore/697cc3ee0e8d912413282a0c/6abe5e2933b2983190a0255b_thumbnail.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20261004T131526Z&X-Amz-SignedHeaders=host&X-Amz-Credential=EXOdde374c35fe53173e35ef535%2F20261004%2Fde-fra-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=d870ae4df9513ccb8f1fc5b20f3a6a27e69633d1008791b8ff31cd6d53250381"
+  "publishedDate": "2026-10-04T16:45:00Z",
+  "url": "https://application.appack.de/news/de/shared/6ac28392580e77bfff6077e0?component=sundern_Application_1765195867222",
+  "image": "https://cdn.appack.de/sundern/filestore/697cc33099ccb8c942df1126/6ac283c1f1d0fe9ea87d5841_thumbnail.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20261004T173931Z&X-Amz-SignedHeaders=host&X-Amz-Credential=EXOdde374c35fe53173e35ef535%2F20261004%2Fde-fra-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=7a092774667c94d50d944fb6b876ec068ed65a532704be904b944b82bebdb96c"
 }
