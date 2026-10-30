@@ -1,10 +1,10 @@
 {
   "status": "ok",
-  "checked_at": "2026-10-30T01:59:09.181901+00:00",
-  "id": "6ae2eb69ccafe008baf01d1a",
-  "title": "Einladung zum Gedenkgottesdienst",
-  "subtitle": "8. November",
-  "publishedDate": "2026-10-29T06:32:00Z",
-  "url": "https://application.appack.de/news/de/shared/6ae2eb69ccafe008baf01d1a?component=sundern_Application_1765195867222",
-  "image": "https://cdn.appack.de/sundern/filestore/697cc66799ccb8c942df740e/6ae2eb68ccafe008baf01d18_thumbnail.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20261030T015915Z&X-Amz-SignedHeaders=host&X-Amz-Credential=EXOdde374c35fe53173e35ef535%2F20261030%2Fde-fra-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=cf8bdef44dbf4daef9fd2ace55596535826c354ddc3cc0097332eac48680f392"
+  "checked_at": "2026-10-30T08:43:19.439853+00:00",
+  "id": "6ae45081ccafe008ba0323f9",
+  "title": "Gemeinsames Singen",
+  "subtitle": "",
+  "publishedDate": "2026-10-30T08:07:00Z",
+  "url": "https://application.appack.de/news/de/shared/6ae45081ccafe008ba0323f9?component=sundern_Application_1765195867222",
+  "image": "https://cdn.appack.de/sundern/filestore/697cc33099ccb8c942df1126/6ae45080ccafe008ba0323f6_thumbnail.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20261030T084325Z&X-Amz-SignedHeaders=host&X-Amz-Credential=EXOdde374c35fe53173e35ef535%2F20261030%2Fde-fra-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=fdc248d613c0dd1811d882355842547f44b83839595a24a8898e70958db19c5e"
 }
