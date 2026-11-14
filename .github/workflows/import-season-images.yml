@@ -1,0 +1,90 @@
+name: Saisonbilder nach GitHub übernehmen
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/import-season-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  import-season-images:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Repository laden
+        uses: actions/checkout@v7
+
+      - name: Ordner anlegen
+        run: |
+          mkdir -p images/seasons/winter
+          mkdir -p images/seasons/fruehling
+          mkdir -p images/seasons/sommer
+          mkdir -p images/seasons/herbst
+
+      - name: Winterbilder laden
+        run: |
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Winter%20Weihnachten%20Schnee%20Kindergarten.jpeg" -o images/seasons/winter/winter_01.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/WhatsApp%20Bild%202023-03-07%20um%2022.36.181.jpg" -o images/seasons/winter/winter_02.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG-20230119-WA0045.jpg" -o images/seasons/winter/winter_03.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Winter%20Dunkel%20Weihnachten%20Schnee%20Hauptstra%C3%9Fe%203.jpeg" -o images/seasons/winter/winter_04.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/WhatsApp%20Bild%202023-03-07%20um%2022.36.1811.jpg" -o images/seasons/winter/winter_05.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Winter%20Weihnachten%20Schnee%20Kirche%20Pfarrheim%20Br%C3%BCckenplatz.jpeg" -o images/seasons/winter/winter_06.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG-20230118-WA0059.jpg" -o images/seasons/winter/winter_07.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG-20230118-WA0061.jpg" -o images/seasons/winter/winter_08.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/WhatsApp%20Bild%202023-03-07%20um%2022.36.171.jpg" -o images/seasons/winter/winter_09.jpg
+
+      - name: Frühlingsbilder laden
+        run: |
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_3086.jpeg" -o images/seasons/fruehling/fruehling_01.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Fr%C3%BChling%20Hintergrund%20Galerie%2014l.jpg.png.jpg" -o images/seasons/fruehling/fruehling_02.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_0477.jpeg" -o images/seasons/fruehling/fruehling_03.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_0497.jpeg" -o images/seasons/fruehling/fruehling_04.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Fr%C3%BChling_8.jpg" -o images/seasons/fruehling/fruehling_05.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Fr%C3%BChling_1.jpg" -o images/seasons/fruehling/fruehling_06.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Fr%C3%BChling_3.jpg" -o images/seasons/fruehling/fruehling_07.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Fr%C3%BChling%20Hintergrund%20Galerie%2013%20Wildewiese%20Schaukel.jpg.png.jpg" -o images/seasons/fruehling/fruehling_08.jpg
+
+      - name: Sommerbilder laden
+        run: |
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6230.jpg" -o images/seasons/sommer/sommer_01.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6248.jpg" -o images/seasons/sommer/sommer_02.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6219.jpg" -o images/seasons/sommer/sommer_03.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6250.jpg" -o images/seasons/sommer/sommer_04.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6260.jpg" -o images/seasons/sommer/sommer_05.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6266.jpg" -o images/seasons/sommer/sommer_06.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6276.jpg" -o images/seasons/sommer/sommer_07.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6225.jpg" -o images/seasons/sommer/sommer_08.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6252.jpg" -o images/seasons/sommer/sommer_09.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6280.jpg" -o images/seasons/sommer/sommer_10.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6256.jpg" -o images/seasons/sommer/sommer_11.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/IMG_6261.jpg" -o images/seasons/sommer/sommer_12.jpg
+
+      - name: Herbstbilder laden
+        run: |
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20Br%C3%BCckenplatz%202.JPG" -o images/seasons/herbst/herbst_01.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20Br%C3%BCckenplatz%204.JPG" -o images/seasons/herbst/herbst_02.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20Panorama%20Hagen%204.JPG" -o images/seasons/herbst/herbst_03.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Musikhaus%20Feuerwehrhaus%20Herbst.JPG" -o images/seasons/herbst/herbst_04.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20HAgen%205.JPG" -o images/seasons/herbst/herbst_05.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20Hagen%204.JPG" -o images/seasons/herbst/herbst_06.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20Hagen%203.JPG" -o images/seasons/herbst/herbst_07.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20Hagen%202.JPG" -o images/seasons/herbst/herbst_08.jpg
+          curl -fL --retry 3 "https://cdn.appack.de/sundern/images/Herbst%20Kirche.JPG" -o images/seasons/herbst/herbst_09.jpg
+
+      - name: Bilder speichern
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add images/seasons
+
+          if git diff --cached --quiet; then
+            echo "Saisonbilder sind bereits aktuell."
+            exit 0
+          fi
+
+          git commit -m "Saisonbilder lokal im Repository speichern"
+          git push
