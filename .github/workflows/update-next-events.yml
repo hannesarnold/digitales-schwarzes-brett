@@ -39,7 +39,9 @@ jobs:
 
       - name: Änderung speichern
         run: |
-          if git diff --quiet next-events.json; then
+          git add next-events.json
+
+          if git diff --cached --quiet; then
             echo "Keine Änderung an next-events.json."
             exit 0
           fi
@@ -47,6 +49,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add next-events.json
           git commit -m "Kommende Appack-Termine aktualisieren"
           git push
