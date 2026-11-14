@@ -116,7 +116,6 @@ def event_to_output(item):
         "detailLink": clean(
             item.get("detailLink")
         ),
-        "image": find_image(item),
     }
 
 
