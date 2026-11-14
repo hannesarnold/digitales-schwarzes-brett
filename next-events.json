@@ -1,6 +1,67 @@
 {
-  "status": "pending",
-  "checked_at": "",
-  "count": 0,
-  "events": []
+  "status": "ok",
+  "checked_at": "2026-11-14T12:26:07.226538+00:00",
+  "count": 5,
+  "events": [
+    {
+      "id": "691347bb500195ddd641363e",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Volkstrauertag - Gedenken an der Kirche",
+      "subtitle": "Gefallenenehrung am Ehrenmal",
+      "dateStart": "2026-11-15T09:15:00Z",
+      "dateEnd": "2026-11-15T10:15:00Z",
+      "allDay": false,
+      "location": "Brückenplatz, Sundern (Sauerland)",
+      "detailLink": "",
+      "image": "https://cdn.appack.de/sundern/images/IMG_6256.jpg"
+    },
+    {
+      "id": "63920be3c5bfe40870dae383",
+      "calendarId": "63920b37cd99a40b7f17fe28",
+      "title": "Gelber Sack",
+      "subtitle": "",
+      "dateStart": "2026-11-16T05:00:00Z",
+      "dateEnd": "2026-11-16T06:00:00Z",
+      "allDay": false,
+      "location": "",
+      "detailLink": "",
+      "image": ""
+    },
+    {
+      "id": "691347df0037ad1b27ca556e",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Seniorennachmittag",
+      "subtitle": "",
+      "dateStart": "2026-11-16T14:00:00Z",
+      "dateEnd": "2026-11-16T17:00:00Z",
+      "allDay": false,
+      "location": "Pfarrheim, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": "",
+      "image": "https://cdn.appack.de/sundern/filestore/645bca94e4b01d34583eda87/6763e066e1d57516eddd5b31.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20261114T122612Z&X-Amz-SignedHeaders=host&X-Amz-Credential=EXOdde374c35fe53173e35ef535%2F20261114%2Fde-fra-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=7718e51ce0ef82a4fead64bd994ebc79fbaa394855e6a4e5bff47a68e572ddc0"
+    },
+    {
+      "id": "639328abd9afc31702774aec",
+      "calendarId": "63920b37cd99a40b7f17fe28",
+      "title": "Graue Tonne",
+      "subtitle": "",
+      "dateStart": "2026-11-17T05:00:00Z",
+      "dateEnd": "2026-11-17T06:00:00Z",
+      "allDay": false,
+      "location": "",
+      "detailLink": "",
+      "image": ""
+    },
+    {
+      "id": "69596185f45bbf02f7a89dc8",
+      "calendarId": "6627f51bfa31186e45907d42",
+      "title": "Hl. Messe",
+      "subtitle": "",
+      "dateStart": "2026-11-17T18:00:00Z",
+      "dateEnd": "2026-11-17T18:30:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": "",
+      "image": "https://cdn.appack.de/sundern/images/Screenshot 2022-11-17 212650.png"
+    }
+  ]
 }
