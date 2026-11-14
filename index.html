@@ -383,7 +383,7 @@ body {
 
 
 /* ================================
-   EIGENE STARTSEITE v0.11.0
+   EIGENE STARTSEITE v0.11.1
    ================================ */
 
 #startSeite {
@@ -1191,7 +1191,7 @@ nav {
 
 
 /* ================================
-   MEHR – ETWAS HÖHER v0.11.0
+   MEHR – ETWAS HÖHER v0.11.1
    ================================ */
 
 #mehrSeite[style*="display: block"] {
@@ -1207,7 +1207,7 @@ nav {
 
 
 /* ================================
-   MEHR / DORFLADEN v0.11.0
+   MEHR / DORFLADEN v0.11.1
    ================================ */
 
 /* Die Überschrift "Mehr" bleibt an ihrer normalen Position */
@@ -1301,7 +1301,7 @@ nav {
 
 
 /* ================================
-   STARTSEITE – NEWS GRÖSSER v0.11.0
+   STARTSEITE – NEWS GRÖSSER v0.11.1
    ================================ */
 
 #startNewsKarte {
@@ -1333,7 +1333,7 @@ nav {
 
 
 /* ================================
-   BUGFIX / LAYOUT v0.11.0
+   BUGFIX / LAYOUT v0.11.1
    ================================ */
 
 /* Überschrift "Mehr" wieder etwas tiefer */
@@ -1387,7 +1387,7 @@ nav {
 
 
 /* ================================
-   OPTIMIERUNGSPAKET v0.11.0
+   OPTIMIERUNGSPAKET v0.11.1
    ================================ */
 
 :root {
@@ -1518,6 +1518,50 @@ nav {
     color: #7a4d00 !important;
 }
 
+
+/* ================================
+   FEINSCHLIFF v0.11.1
+   ================================ */
+
+/* Karte: Marker füllen immer ihren Leaflet-Icon-Rahmen */
+.kartenMarker {
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Mehr: fünf Kacheln wirklich gleich groß */
+#mehrSeite .mehrGrid {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: 520px !important;
+    align-items: stretch !important;
+}
+
+#mehrSeite .mehrButton {
+    width: 100% !important;
+    height: 520px !important;
+    min-width: 0 !important;
+    min-height: 520px !important;
+    max-width: none !important;
+    padding: 48px 34px !important;
+}
+
+#mehrSeite .mehrButton:last-child {
+    grid-column: 1 / -1 !important;
+    width: calc((100% - 70px) / 2) !important;
+    justify-self: center !important;
+}
+
+/* Dorfchronik: eigener, breiterer Iframe-Modus.
+   News / Termine bleiben bei der starken Kiosk-Skalierung. */
+#anzeige.iframeChronik {
+    transform: scale(2.0) !important;
+    transform-origin: top left !important;
+    width: 50% !important;
+    height: 50% !important;
+}
+
 </style>
 </head>
 
@@ -1540,7 +1584,7 @@ nav {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.11.0
+         EIGENE STARTSEITE v0.11.1
          ============================ -->
 
     <div id="startSeite">
@@ -1991,12 +2035,12 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.11.0
+   STARTSEITE v0.11.1
    ================================ */
 
 
 /* ================================
-   SAISONALE HINTERGRUNDBILDER v0.11.0
+   SAISONALE HINTERGRUNDBILDER v0.11.1
 
    Winter:    Dezember / Januar / Februar
    Frühling:  März / April / Mai
@@ -2590,7 +2634,7 @@ setInterval(
 
 
 /* ================================
-   VERBINDUNGSSTATUS v0.11.0
+   VERBINDUNGSSTATUS v0.11.1
    ================================ */
 
 function aktualisiereVerbindungsstatus() {
@@ -2663,7 +2707,7 @@ function aktiviereNavigation(id) {
    WEBSEITE ANZEIGEN
    ================================ */
 
-function zeigeIframe(url) {
+function zeigeIframe(url, modus) {
 
 
     document
@@ -2691,6 +2735,15 @@ function zeigeIframe(url) {
         document
         .getElementById("anzeige");
 
+    iframe.classList.remove(
+        "iframeChronik"
+    );
+
+    if (modus === "chronik") {
+        iframe.classList.add(
+            "iframeChronik"
+        );
+    }
 
     iframe.style.display =
         "block";
@@ -3076,7 +3129,8 @@ function zeigeVereine() {
 function zeigeChronik() {
 
     zeigeIframe(
-        urls.chronik
+        urls.chronik,
+        "chronik"
     );
 
     aktiviereNavigation(
@@ -3560,7 +3614,87 @@ const kartenPunkte = [
 ];
 
 let dorfkarte = null;
+let dorfMarker = [];
+
 const markerFarben = {lightgreen:'#86c779',yellow:'#f2c94c',blue:'#2f80ed',mediumred:'#d9534f',lightyellow:'#f6e58d',lightblue:'#74b9ff',darkgreen:'#277a45',darkred:'#9b2c2c',white:'#f5f5f5',mediumgreen:'#4fa66b',olive:'#808000',green:'#27ae60',darkorange:'#d96b00',darkgrey:'#555555',red:'#d63031',orange:'#f39c12',purple:'#8e44ad'};
+
+function kartenMarkerGroesse() {
+
+    if (!dorfkarte) {
+        return 32;
+    }
+
+    const zoom =
+        dorfkarte.getZoom() || 13;
+
+    /*
+       Je weiter hineingezoomt wird,
+       desto größer werden die Marker.
+       So bleiben sie auch auf Straßenniveau
+       gut sichtbar und touchbar.
+    */
+    const groesse =
+        32 * Math.pow(
+            1.45,
+            zoom - 13
+        );
+
+    return Math.round(
+        Math.max(
+            32,
+            Math.min(
+                110,
+                groesse
+            )
+        )
+    );
+}
+
+function erstelleKartenIcon(p, groesse) {
+
+    const farbe =
+        markerFarben[p.color] ||
+        '#43996f';
+
+    return L.divIcon({
+        className:'',
+        html:
+            '<div class="kartenMarker" style="background:' +
+            farbe +
+            '"></div>',
+        iconSize:[
+            groesse,
+            groesse
+        ],
+        iconAnchor:[
+            groesse / 2,
+            groesse
+        ],
+        popupAnchor:[
+            0,
+            -groesse
+        ]
+    });
+}
+
+function aktualisiereKartenMarkerGroesse() {
+
+    const groesse =
+        kartenMarkerGroesse();
+
+    dorfMarker.forEach(
+        function(eintrag) {
+
+            eintrag.marker.setIcon(
+                erstelleKartenIcon(
+                    eintrag.punkt,
+                    groesse
+                )
+            );
+        }
+    );
+}
+
 function zeigeKarte(){
 
  document.getElementById('anzeige').style.display='none';
@@ -3587,34 +3721,37 @@ function zeigeKarte(){
 
   kartenPunkte.forEach(function(p){
 
-   const farbe=
-      markerFarben[p.color]||'#43996f';
+   const marker =
+       L.marker(
+          [p.lat,p.lon],
+          {
+              icon:
+                  erstelleKartenIcon(
+                      p,
+                      32
+                  )
+          }
+       )
+       .addTo(dorfkarte)
+       .bindPopup(
+          '<strong>'+
+          escapeHtml(p.title)+
+          '</strong>'+
+          (p.subtitle
+            ?'<br>'+escapeHtml(p.subtitle)
+            :'')
+       );
 
-   const icon=L.divIcon({
-      className:'',
-      html:
-        '<div class="kartenMarker" style="background:'+
-        farbe+
-        '"></div>',
-      iconSize:[30,30],
-      iconAnchor:[15,30],
-      popupAnchor:[0,-28]
+   dorfMarker.push({
+       marker: marker,
+       punkt: p
    });
-
-   L.marker(
-      [p.lat,p.lon],
-      {icon:icon}
-   )
-   .addTo(dorfkarte)
-   .bindPopup(
-      '<strong>'+
-      escapeHtml(p.title)+
-      '</strong>'+
-      (p.subtitle
-        ?'<br>'+escapeHtml(p.subtitle)
-        :'')
-   );
   });
+
+  dorfkarte.on(
+      'zoomend',
+      aktualisiereKartenMarkerGroesse
+  );
  }
 
  setTimeout(function(){
@@ -3642,6 +3779,8 @@ function zeigeKarte(){
             animate:false
         }
     );
+
+    aktualisiereKartenMarkerGroesse();
 
  },250);
 }
