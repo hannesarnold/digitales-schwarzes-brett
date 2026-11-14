@@ -50,4 +50,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git commit -m "Kommende Appack-Termine aktualisieren"
+
+          # Falls während des Laufs eine andere Datei geändert wurde,
+          # zuerst den aktuellen main-Stand einholen.
+          git pull --rebase origin main
           git push
