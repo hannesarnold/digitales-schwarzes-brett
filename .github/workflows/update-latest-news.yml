@@ -3,7 +3,7 @@ name: Neueste Appack-News aktualisieren
 on:
   workflow_dispatch:
   schedule:
-    # Einmal pro Stunde, leicht versetzt zur vollen Stunde
+    # Einmal pro Stunde
     - cron: "17 * * * *"
 
 permissions:
@@ -11,14 +11,16 @@ permissions:
 
 jobs:
   update-latest-news:
-    runs-on: ubuntu-latest
+    # Bewusst fest auf Ubuntu 24.04 pinnen.
+    # So sind wir nicht von der ubuntu-latest-Migration auf Ubuntu 26 abhängig.
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Repository laden
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Python einrichten
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -26,7 +28,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install playwright
-          playwright install chromium
+          playwright install --with-deps chromium
 
       - name: Neueste News ermitteln
         run: python scripts/update_latest_news.py
