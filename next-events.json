@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-14T12:26:07.226538+00:00",
+  "checked_at": "2026-11-14T12:29:17.036357+00:00",
   "count": 5,
   "events": [
     {
@@ -12,8 +12,7 @@
       "dateEnd": "2026-11-15T10:15:00Z",
       "allDay": false,
       "location": "Brückenplatz, Sundern (Sauerland)",
-      "detailLink": "",
-      "image": "https://cdn.appack.de/sundern/images/IMG_6256.jpg"
+      "detailLink": ""
     },
     {
       "id": "63920be3c5bfe40870dae383",
@@ -24,8 +23,7 @@
       "dateEnd": "2026-11-16T06:00:00Z",
       "allDay": false,
       "location": "",
-      "detailLink": "",
-      "image": ""
+      "detailLink": ""
     },
     {
       "id": "691347df0037ad1b27ca556e",
@@ -36,8 +34,7 @@
       "dateEnd": "2026-11-16T17:00:00Z",
       "allDay": false,
       "location": "Pfarrheim, Brückenplatz 3, Sundern (Sauerland)",
-      "detailLink": "",
-      "image": "https://cdn.appack.de/sundern/filestore/645bca94e4b01d34583eda87/6763e066e1d57516eddd5b31.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20261114T122612Z&X-Amz-SignedHeaders=host&X-Amz-Credential=EXOdde374c35fe53173e35ef535%2F20261114%2Fde-fra-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=7718e51ce0ef82a4fead64bd994ebc79fbaa394855e6a4e5bff47a68e572ddc0"
+      "detailLink": ""
     },
     {
       "id": "639328abd9afc31702774aec",
@@ -48,8 +45,7 @@
       "dateEnd": "2026-11-17T06:00:00Z",
       "allDay": false,
       "location": "",
-      "detailLink": "",
-      "image": ""
+      "detailLink": ""
     },
     {
       "id": "69596185f45bbf02f7a89dc8",
@@ -60,8 +56,7 @@
       "dateEnd": "2026-11-17T18:30:00Z",
       "allDay": false,
       "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
-      "detailLink": "",
-      "image": "https://cdn.appack.de/sundern/images/Screenshot 2022-11-17 212650.png"
+      "detailLink": ""
     }
   ]
 }
