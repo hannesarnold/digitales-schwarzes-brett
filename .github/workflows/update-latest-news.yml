@@ -2,6 +2,12 @@ name: Neueste Appack-News aktualisieren
 
 on:
   workflow_dispatch:
+
+  push:
+    paths:
+      - ".github/workflows/update-latest-news.yml"
+      - "scripts/update_latest_news.py"
+
   schedule:
     # Einmal pro Stunde
     - cron: "17 * * * *"
