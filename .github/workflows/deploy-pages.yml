@@ -1,0 +1,41 @@
+name: Digitale Stele veröffentlichen
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Repository laden
+        uses: actions/checkout@v6
+
+      - name: GitHub Pages einrichten
+        uses: actions/configure-pages@v5
+
+      - name: Website hochladen
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "."
+
+      - name: Website veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
