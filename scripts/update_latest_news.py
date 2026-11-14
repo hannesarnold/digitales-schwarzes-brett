@@ -191,17 +191,6 @@ def main():
                 .lower()
             )
 
-            # Nur JSON-Antworten untersuchen.
-            if (
-                "application/json" not in ctype
-                and "+json" not in ctype
-            ):
-                return
-
-            diagnostics[
-                "json_responses"
-            ] += 1
-
             try:
                 hostname = (
                     urlsplit(response.url)
@@ -211,7 +200,9 @@ def main():
             except Exception:
                 hostname = ""
 
-            # Appack-Antworten sind für uns relevant.
+            # Alle Appack-Antworten prüfen.
+            # Wir verlassen uns absichtlich NICHT mehr darauf,
+            # dass Appack den Content-Type korrekt als JSON meldet.
             if not (
                 hostname == "appack.de"
                 or hostname.endswith(
@@ -219,6 +210,14 @@ def main():
                 )
             ):
                 return
+
+            if (
+                "application/json" in ctype
+                or "+json" in ctype
+            ):
+                diagnostics[
+                    "json_responses"
+                ] += 1
 
             diagnostics[
                 "appack_json_responses"
