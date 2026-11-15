@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-15T02:59:04.644916+00:00",
+  "checked_at": "2026-11-15T11:24:40.458311+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "691347bb500195ddd641363e",
-      "calendarId": "6329b0e6ff52ef13c6a86e2e",
-      "title": "Volkstrauertag - Gedenken an der Kirche",
-      "subtitle": "Gefallenenehrung am Ehrenmal",
-      "dateStart": "2026-11-15T09:15:00Z",
-      "dateEnd": "2026-11-15T10:15:00Z",
-      "allDay": false,
-      "location": "Brückenplatz, Sundern (Sauerland)",
-      "detailLink": ""
-    },
     {
       "id": "63920be3c5bfe40870dae383",
       "calendarId": "63920b37cd99a40b7f17fe28",
@@ -56,6 +45,17 @@
       "dateEnd": "2026-11-17T18:30:00Z",
       "allDay": false,
       "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "6aa2a8053ddcfe31dfb7813a",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Musikhaus Kids",
+      "subtitle": "",
+      "dateStart": "2026-11-18T15:00:00Z",
+      "dateEnd": "2026-11-18T16:00:00Z",
+      "allDay": false,
+      "location": "Musikhaus, Auf dem Kampe 10a, Sundern (Sauerland)",
       "detailLink": ""
     }
   ]
