@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-16T11:58:07.952662+00:00",
+  "checked_at": "2026-11-16T22:27:34.019837+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "691347df0037ad1b27ca556e",
-      "calendarId": "6329b0e6ff52ef13c6a86e2e",
-      "title": "Seniorennachmittag",
-      "subtitle": "",
-      "dateStart": "2026-11-16T14:00:00Z",
-      "dateEnd": "2026-11-16T17:00:00Z",
-      "allDay": false,
-      "location": "Pfarrheim, Brückenplatz 3, Sundern (Sauerland)",
-      "detailLink": ""
-    },
     {
       "id": "639328abd9afc31702774aec",
       "calendarId": "63920b37cd99a40b7f17fe28",
@@ -56,6 +45,17 @@
       "dateEnd": "2026-11-20T20:30:00Z",
       "allDay": false,
       "location": "Dorfladen Hagen, Hagener Straße, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "6913488a9aee085890d9e891",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Dankeschön Tag Skiclub",
+      "subtitle": "",
+      "dateStart": "2026-11-20T23:00:00Z",
+      "dateEnd": "2026-11-21T22:59:59.999Z",
+      "allDay": true,
+      "location": "",
       "detailLink": ""
     }
   ]
