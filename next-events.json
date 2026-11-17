@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-17T04:43:52.588896+00:00",
+  "checked_at": "2026-11-17T14:49:39.110927+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "639328abd9afc31702774aec",
-      "calendarId": "63920b37cd99a40b7f17fe28",
-      "title": "Graue Tonne",
-      "subtitle": "",
-      "dateStart": "2026-11-17T05:00:00Z",
-      "dateEnd": "2026-11-17T06:00:00Z",
-      "allDay": false,
-      "location": "",
-      "detailLink": ""
-    },
     {
       "id": "69596185f45bbf02f7a89dc8",
       "calendarId": "6627f51bfa31186e45907d42",
@@ -56,6 +45,17 @@
       "dateEnd": "2026-11-21T22:59:59.999Z",
       "allDay": true,
       "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "69cb77dd2a71a24c75dc744f",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Kindertrödel",
+      "subtitle": "",
+      "dateStart": "2026-11-21T09:00:00Z",
+      "dateEnd": "2026-11-21T13:00:00Z",
+      "allDay": false,
+      "location": "Schützenhalle der St. Sebastian Schützenbruderschaft, Schützenstraße 3, Sundern (Sauerland)",
       "detailLink": ""
     }
   ]
