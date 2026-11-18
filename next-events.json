@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-18T14:28:23.098591+00:00",
+  "checked_at": "2026-11-18T22:26:52.306947+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "6aa2a8053ddcfe31dfb7813a",
-      "calendarId": "6329b0e6ff52ef13c6a86e2e",
-      "title": "Musikhaus Kids",
-      "subtitle": "",
-      "dateStart": "2026-11-18T15:00:00Z",
-      "dateEnd": "2026-11-18T16:00:00Z",
-      "allDay": false,
-      "location": "Musikhaus, Auf dem Kampe 10a, Sundern (Sauerland)",
-      "detailLink": ""
-    },
     {
       "id": "69c019f5bc14b058b47ed17e",
       "calendarId": "6329b0e6ff52ef13c6a86e2e",
@@ -57,6 +46,17 @@
       "allDay": false,
       "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
       "detailLink": ""
+    },
+    {
+      "id": "69fb360dbc6dfc19fa5a2eb4",
+      "calendarId": "6963c1ae02272ccf1abad435",
+      "title": "Blutspenden in Stockum",
+      "subtitle": "Ein halber Liter für den guten Zweck",
+      "dateStart": "2026-11-23T16:30:00Z",
+      "dateEnd": "2026-11-23T19:00:00Z",
+      "allDay": false,
+      "location": "Schützenhalle Stockum, Bachstraße 10, Sundern (Sauerland)",
+      "detailLink": "https://www.drk-blutspende.de/blutspendetermine/termine/378256?term=59846"
     }
   ]
 }
