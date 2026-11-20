@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-20T13:29:50.018314+00:00",
+  "checked_at": "2026-11-20T21:28:39.789895+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "69c019f5bc14b058b47ed17e",
-      "calendarId": "6329b0e6ff52ef13c6a86e2e",
-      "title": "Feierabend am Dorfladen!",
-      "subtitle": "Kulinarik und Kultur",
-      "dateStart": "2026-11-20T16:30:00Z",
-      "dateEnd": "2026-11-20T20:30:00Z",
-      "allDay": false,
-      "location": "Dorfladen Hagen, Hagener Straße, Sundern (Sauerland)",
-      "detailLink": ""
-    },
     {
       "id": "6913488a9aee085890d9e891",
       "calendarId": "6329b0e6ff52ef13c6a86e2e",
@@ -57,6 +46,17 @@
       "allDay": false,
       "location": "Schützenhalle Stockum, Bachstraße 10, Sundern (Sauerland)",
       "detailLink": "https://www.drk-blutspende.de/blutspendetermine/termine/378256?term=59846"
+    },
+    {
+      "id": "6af6f4f397fa4eb924a2c563",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Bürgerbeteiligung zum Verkehrs- und Parkraumkonzept",
+      "subtitle": "",
+      "dateStart": "2026-11-23T16:30:00Z",
+      "dateEnd": "2026-11-23T18:30:00Z",
+      "allDay": false,
+      "location": "vhs Arnsberg/Sundern, Franz-Josef-Tigges- Platz 1, Sundern (Sauerland)",
+      "detailLink": ""
     }
   ]
 }
