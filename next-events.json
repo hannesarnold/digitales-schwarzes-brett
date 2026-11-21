@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-21T11:38:38.359027+00:00",
+  "checked_at": "2026-11-21T19:41:23.332961+00:00",
   "count": 5,
   "events": [
     {
@@ -12,17 +12,6 @@
       "dateEnd": "2026-11-21T22:59:59.999Z",
       "allDay": true,
       "location": "",
-      "detailLink": ""
-    },
-    {
-      "id": "69cb77dd2a71a24c75dc744f",
-      "calendarId": "6329b0e6ff52ef13c6a86e2e",
-      "title": "Kindertrödel",
-      "subtitle": "",
-      "dateStart": "2026-11-21T09:00:00Z",
-      "dateEnd": "2026-11-21T13:00:00Z",
-      "allDay": false,
-      "location": "Schützenhalle der St. Sebastian Schützenbruderschaft, Schützenstraße 3, Sundern (Sauerland)",
       "detailLink": ""
     },
     {
@@ -56,6 +45,17 @@
       "dateEnd": "2026-11-23T18:30:00Z",
       "allDay": false,
       "location": "vhs Arnsberg/Sundern, Franz-Josef-Tigges- Platz 1, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "69596185f45bbf02f7a89dc9",
+      "calendarId": "6627f51bfa31186e45907d42",
+      "title": "Hl. Messe",
+      "subtitle": "",
+      "dateStart": "2026-11-24T18:00:00Z",
+      "dateEnd": "2026-11-24T18:30:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
       "detailLink": ""
     }
   ]
