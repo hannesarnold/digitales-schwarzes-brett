@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-22T08:40:06.197497+00:00",
+  "checked_at": "2026-11-22T17:19:45.983363+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "695962489f66061361010fa7",
-      "calendarId": "6627f51bfa31186e45907d42",
-      "title": "Hochamt",
-      "subtitle": "",
-      "dateStart": "2026-11-22T08:30:00Z",
-      "dateEnd": "2026-11-22T09:30:00Z",
-      "allDay": false,
-      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
-      "detailLink": ""
-    },
     {
       "id": "69fb360dbc6dfc19fa5a2eb4",
       "calendarId": "6963c1ae02272ccf1abad435",
@@ -54,6 +43,17 @@
       "subtitle": "",
       "dateStart": "2026-11-25T11:50:00Z",
       "dateEnd": "2026-11-25T20:00:00Z",
+      "allDay": false,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "63920be3c5bfe40870dae384",
+      "calendarId": "63920b37cd99a40b7f17fe28",
+      "title": "Gelber Sack",
+      "subtitle": "",
+      "dateStart": "2026-11-30T05:00:00Z",
+      "dateEnd": "2026-11-30T06:00:00Z",
       "allDay": false,
       "location": "",
       "detailLink": ""
