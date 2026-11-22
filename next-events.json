@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-21T19:41:23.332961+00:00",
+  "checked_at": "2026-11-22T00:36:54.499043+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "6913488a9aee085890d9e891",
-      "calendarId": "6329b0e6ff52ef13c6a86e2e",
-      "title": "Dankeschön Tag Skiclub",
-      "subtitle": "",
-      "dateStart": "2026-11-20T23:00:00Z",
-      "dateEnd": "2026-11-21T22:59:59.999Z",
-      "allDay": true,
-      "location": "",
-      "detailLink": ""
-    },
     {
       "id": "695962489f66061361010fa7",
       "calendarId": "6627f51bfa31186e45907d42",
@@ -56,6 +45,17 @@
       "dateEnd": "2026-11-24T18:30:00Z",
       "allDay": false,
       "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "691348b90037ad1b27ca5ac4",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Fahrt zum Weihnachtsmarkt",
+      "subtitle": "",
+      "dateStart": "2026-11-25T11:50:00Z",
+      "dateEnd": "2026-11-25T20:00:00Z",
+      "allDay": false,
+      "location": "",
       "detailLink": ""
     }
   ]
