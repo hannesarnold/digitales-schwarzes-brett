@@ -14,7 +14,7 @@ CALENDAR_URL = (
 )
 
 OUTPUT = Path("next-events.json")
-MAX_EVENTS = 5
+MAX_EVENTS = 20
 
 
 def clean(value):
