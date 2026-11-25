@@ -383,7 +383,7 @@ body {
 
 
 /* ================================
-   EIGENE STARTSEITE v0.13.1
+   EIGENE STARTSEITE v0.13.2
    ================================ */
 
 #startSeite {
@@ -1191,7 +1191,7 @@ nav {
 
 
 /* ================================
-   MEHR – ETWAS HÖHER v0.13.1
+   MEHR – ETWAS HÖHER v0.13.2
    ================================ */
 
 #mehrSeite[style*="display: block"] {
@@ -1207,7 +1207,7 @@ nav {
 
 
 /* ================================
-   MEHR / DORFLADEN v0.13.1
+   MEHR / DORFLADEN v0.13.2
    ================================ */
 
 /* Die Überschrift "Mehr" bleibt an ihrer normalen Position */
@@ -1301,7 +1301,7 @@ nav {
 
 
 /* ================================
-   STARTSEITE – NEWS GRÖSSER v0.13.1
+   STARTSEITE – NEWS GRÖSSER v0.13.2
    ================================ */
 
 #startNewsKarte {
@@ -1333,7 +1333,7 @@ nav {
 
 
 /* ================================
-   BUGFIX / LAYOUT v0.13.1
+   BUGFIX / LAYOUT v0.13.2
    ================================ */
 
 /* Überschrift "Mehr" wieder etwas tiefer */
@@ -1387,7 +1387,7 @@ nav {
 
 
 /* ================================
-   OPTIMIERUNGSPAKET v0.13.1
+   OPTIMIERUNGSPAKET v0.13.2
    ================================ */
 
 :root {
@@ -1520,7 +1520,7 @@ nav {
 
 
 /* ================================
-   FEINSCHLIFF v0.13.1
+   FEINSCHLIFF v0.13.2
    ================================ */
 
 /* Karte: Marker füllen immer ihren Leaflet-Icon-Rahmen */
@@ -1564,7 +1564,7 @@ nav {
 
 
 /* ================================
-   KIOSK-FEINSCHLIFF v0.13.1
+   KIOSK-FEINSCHLIFF v0.13.2
    ================================ */
 
 /* Mehr-Seite: breitere Kacheln und besser passende Schrift */
@@ -1728,7 +1728,7 @@ nav {
 
 
 /* ================================
-   STARTSEITE FEINSCHLIFF v0.13.1
+   STARTSEITE FEINSCHLIFF v0.13.2
    ================================ */
 
 /* "Wetter" exakt wie "Neueste Meldung" */
@@ -1748,7 +1748,7 @@ nav {
 
 
 /* ================================
-   DORFMODUS / TAGES-RUHEMODUS v0.13.1
+   DORFMODUS / TAGES-RUHEMODUS v0.13.2
    08:00–21:00 Uhr, nach 60 Sekunden
    ================================ */
 
@@ -1946,7 +1946,7 @@ nav {
 
     
     <!-- ============================
-         EIGENE STARTSEITE v0.13.1
+         EIGENE STARTSEITE v0.13.2
          ============================ -->
 
     <div id="startSeite">
@@ -2404,12 +2404,12 @@ vereine:
 
 
 /* ================================
-   STARTSEITE v0.13.1
+   STARTSEITE v0.13.2
    ================================ */
 
 
 /* ================================
-   SAISONALE HINTERGRUNDBILDER v0.13.1
+   SAISONALE HINTERGRUNDBILDER v0.13.2
 
    Winter:    Dezember / Januar / Februar
    Frühling:  März / April / Mai
@@ -3124,7 +3124,7 @@ setInterval(
 
 
 /* ================================
-   VERBINDUNGSSTATUS v0.13.1
+   VERBINDUNGSSTATUS v0.13.2
    ================================ */
 
 function aktualisiereVerbindungsstatus() {
@@ -3158,7 +3158,7 @@ aktualisiereVerbindungsstatus();
 
 
 /* ================================
-   DORFMODUS / TAGES-RUHEMODUS v0.13.1
+   DORFMODUS / TAGES-RUHEMODUS v0.13.2
    ================================ */
 
 const RUHEMODUS_INAKTIV_MS =
@@ -3236,24 +3236,76 @@ async function ladeRuhemodusTermine() {
                den Dorf-Slider dominieren.
             */
             const ausschluss =
-                /^(Gelber Sack|Graue Tonne|Biotonne|Papiertonne|Restmüll|Müllabfuhr)$/i;
+                /^(Gelber Sack|Graue Tonne|Grüne Tonne|Biotonne|Papiertonne|Restmüll|Müllabfuhr)$/i;
+
+            const jetzt =
+                new Date();
 
             ruhemodusEvents =
-                daten.events.filter(
-                    function(event) {
+                daten.events
+                    .filter(
+                        function(event) {
 
-                        return (
-                            event &&
-                            event.title &&
-                            !ausschluss.test(
-                                event.title.trim()
-                            )
-                        );
-                    }
-                );
+                            if (
+                                !event ||
+                                !event.title
+                            ) {
+                                return false;
+                            }
+
+                            if (
+                                ausschluss.test(
+                                    event.title.trim()
+                                )
+                            ) {
+                                return false;
+                            }
+
+                            const ende =
+                                event.dateEnd
+                                    ? new Date(event.dateEnd)
+                                    : null;
+
+                            const start =
+                                event.dateStart
+                                    ? new Date(event.dateStart)
+                                    : null;
+
+                            const relevantBis =
+                                (
+                                    ende &&
+                                    !Number.isNaN(
+                                        ende.getTime()
+                                    )
+                                )
+                                    ? ende
+                                    : start;
+
+                            if (
+                                !relevantBis ||
+                                Number.isNaN(
+                                    relevantBis.getTime()
+                                )
+                            ) {
+                                return false;
+                            }
+
+                            return (
+                                relevantBis >= jetzt
+                            );
+                        }
+                    )
+                    .slice(0, 5);
         }
 
     } catch (fehler) {
+
+        /*
+           Bei einem Ladefehler keine alten
+           Termine aus einer früheren Sitzung
+           weiter anzeigen.
+        */
+        ruhemodusEvents = [];
 
         console.error(
             "Ruhemodus-Termine konnten nicht geladen werden:",
@@ -3491,7 +3543,7 @@ function zeigeNaechstenRuhemodusSlide() {
     ruhemodusSchritt++;
 }
 
-function aktiviereRuhemodus() {
+async function aktiviereRuhemodus() {
 
     if (
         !istTagesbetrieb() ||
@@ -3500,6 +3552,12 @@ function aktiviereRuhemodus() {
     ) {
         return;
     }
+
+    /*
+       Direkt vor jedem Start des Ruhemodus
+       die aktuellen Termine frisch laden.
+    */
+    await ladeRuhemodusTermine();
 
     const overlay =
         document.getElementById(
