@@ -1,7 +1,7 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-25T17:32:32.676203+00:00",
-  "count": 5,
+  "checked_at": "2026-11-25T17:43:57.682651+00:00",
+  "count": 20,
   "events": [
     {
       "id": "691348b90037ad1b27ca5ac4",
@@ -56,6 +56,171 @@
       "dateEnd": "2026-12-06T18:00:00Z",
       "allDay": false,
       "location": "Kath. Kirchengemeinde St. Antonius Eins. Sundern-Allendorf, Apostelstraße 12, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "691348f00037ad1b27ca5d0a",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Festhochamt zum Patronatsfest unter Mitwirkung des Musikvereins Hagen",
+      "subtitle": "",
+      "dateStart": "2026-12-06T08:30:00Z",
+      "dateEnd": "2026-12-06T11:00:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "695962489f66061361010fa8",
+      "calendarId": "6627f51bfa31186e45907d42",
+      "title": "Hochamt",
+      "subtitle": "",
+      "dateStart": "2026-12-06T08:30:00Z",
+      "dateEnd": "2026-12-06T09:30:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "69596185f45bbf02f7a89dcb",
+      "calendarId": "6627f51bfa31186e45907d42",
+      "title": "Hl. Messe",
+      "subtitle": "",
+      "dateStart": "2026-12-08T18:00:00Z",
+      "dateEnd": "2026-12-08T18:30:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "6aa2a83c596d8b538b659157",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Musikhaus Kids 🪩DISCO🪩",
+      "subtitle": "",
+      "dateStart": "2026-12-11T16:00:00Z",
+      "dateEnd": "2026-12-11T18:00:00Z",
+      "allDay": false,
+      "location": "Musikhaus, Auf dem Kampe 10a, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "63920be3c5bfe40870dae385",
+      "calendarId": "63920b37cd99a40b7f17fe28",
+      "title": "Gelber Sack",
+      "subtitle": "",
+      "dateStart": "2026-12-14T05:00:00Z",
+      "dateEnd": "2026-12-14T06:00:00Z",
+      "allDay": false,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "691347fc500195ddd6413864",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Nikolausfeier Senior*innen",
+      "subtitle": "",
+      "dateStart": "2026-12-14T14:00:00Z",
+      "dateEnd": "2026-12-14T17:00:00Z",
+      "allDay": false,
+      "location": "Pfarrheim, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "639328abd9afc31702774aed",
+      "calendarId": "63920b37cd99a40b7f17fe28",
+      "title": "Graue Tonne",
+      "subtitle": "",
+      "dateStart": "2026-12-15T05:00:00Z",
+      "dateEnd": "2026-12-15T06:00:00Z",
+      "allDay": false,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "69596185f45bbf02f7a89dcc",
+      "calendarId": "6627f51bfa31186e45907d42",
+      "title": "Hl. Messe",
+      "subtitle": "",
+      "dateStart": "2026-12-15T18:00:00Z",
+      "dateEnd": "2026-12-15T18:30:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "695962489f66061361010fa9",
+      "calendarId": "6627f51bfa31186e45907d42",
+      "title": "Hochamt",
+      "subtitle": "",
+      "dateStart": "2026-12-20T08:30:00Z",
+      "dateEnd": "2026-12-20T09:30:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "69596185f45bbf02f7a89dcd",
+      "calendarId": "6627f51bfa31186e45907d42",
+      "title": "Hl. Messe",
+      "subtitle": "",
+      "dateStart": "2026-12-22T18:00:00Z",
+      "dateEnd": "2026-12-22T18:30:00Z",
+      "allDay": false,
+      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "675b4963a884a224cfe4a555",
+      "calendarId": "675b47e9a884a224cfe4a16d",
+      "title": "Weihnachtsferien",
+      "subtitle": "",
+      "dateStart": "2026-12-22T23:00:00Z",
+      "dateEnd": "2027-01-06T22:59:59.999Z",
+      "allDay": true,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "675b4f33a884a224cfe50d32",
+      "calendarId": "675b47e9a884a224cfe4a16d",
+      "title": "1. Weihnachtstag",
+      "subtitle": "",
+      "dateStart": "2026-12-24T23:00:00Z",
+      "dateEnd": "2026-12-25T22:59:59.999Z",
+      "allDay": true,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "675b4f4ea884a224cfe50d6d",
+      "calendarId": "675b4a4102d2892375be8142",
+      "title": "2. Weihnachtstag",
+      "subtitle": "",
+      "dateStart": "2026-12-25T23:00:00Z",
+      "dateEnd": "2026-12-26T22:59:59.999Z",
+      "allDay": true,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "691349500037ad1b27ca6013",
+      "calendarId": "6329b0e6ff52ef13c6a86e2e",
+      "title": "Fahrt in die Ramsau",
+      "subtitle": "",
+      "dateStart": "2026-12-26T23:00:00Z",
+      "dateEnd": "2027-01-03T22:59:59.999Z",
+      "allDay": true,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "63920be3c5bfe40870dae386",
+      "calendarId": "63920b37cd99a40b7f17fe28",
+      "title": "Gelber Sack",
+      "subtitle": "",
+      "dateStart": "2026-12-28T05:00:00Z",
+      "dateEnd": "2026-12-28T06:00:00Z",
+      "allDay": false,
+      "location": "",
       "detailLink": ""
     }
   ]
