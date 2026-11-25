@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-24T12:53:39.420832+00:00",
+  "checked_at": "2026-11-25T05:37:36.033566+00:00",
   "count": 5,
   "events": [
-    {
-      "id": "69596185f45bbf02f7a89dc9",
-      "calendarId": "6627f51bfa31186e45907d42",
-      "title": "Hl. Messe",
-      "subtitle": "",
-      "dateStart": "2026-11-24T18:00:00Z",
-      "dateEnd": "2026-11-24T18:30:00Z",
-      "allDay": false,
-      "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
-      "detailLink": ""
-    },
     {
       "id": "691348b90037ad1b27ca5ac4",
       "calendarId": "6329b0e6ff52ef13c6a86e2e",
@@ -56,6 +45,17 @@
       "dateEnd": "2026-12-01T18:30:00Z",
       "allDay": false,
       "location": "Kirche, Brückenplatz 3, Sundern (Sauerland)",
+      "detailLink": ""
+    },
+    {
+      "id": "6aec910b682f14996ed12cda",
+      "calendarId": "66dff32de54ef768264849bb",
+      "title": "Allendorfer Weihnachtsmarkt",
+      "subtitle": "",
+      "dateStart": "2026-12-05T14:30:00Z",
+      "dateEnd": "2026-12-06T18:00:00Z",
+      "allDay": false,
+      "location": "Kath. Kirchengemeinde St. Antonius Eins. Sundern-Allendorf, Apostelstraße 12, Sundern (Sauerland)",
       "detailLink": ""
     }
   ]
