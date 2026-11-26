@@ -1,19 +1,8 @@
 {
   "status": "ok",
-  "checked_at": "2026-11-25T17:43:57.682651+00:00",
+  "checked_at": "2026-11-26T01:08:21.407148+00:00",
   "count": 20,
   "events": [
-    {
-      "id": "691348b90037ad1b27ca5ac4",
-      "calendarId": "6329b0e6ff52ef13c6a86e2e",
-      "title": "Fahrt zum Weihnachtsmarkt",
-      "subtitle": "",
-      "dateStart": "2026-11-25T11:50:00Z",
-      "dateEnd": "2026-11-25T20:00:00Z",
-      "allDay": false,
-      "location": "",
-      "detailLink": ""
-    },
     {
       "id": "63920be3c5bfe40870dae384",
       "calendarId": "63920b37cd99a40b7f17fe28",
@@ -219,6 +208,17 @@
       "subtitle": "",
       "dateStart": "2026-12-28T05:00:00Z",
       "dateEnd": "2026-12-28T06:00:00Z",
+      "allDay": false,
+      "location": "",
+      "detailLink": ""
+    },
+    {
+      "id": "63932864c5bfe40870dc5c31",
+      "calendarId": "63920b37cd99a40b7f17fe28",
+      "title": "Grüne Tonne",
+      "subtitle": "",
+      "dateStart": "2026-12-29T05:00:00Z",
+      "dateEnd": "2026-12-29T06:00:00Z",
       "allDay": false,
       "location": "",
       "detailLink": ""
